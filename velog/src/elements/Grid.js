@@ -86,7 +86,7 @@ Grid.defaultProps = {
   overFlow:false, // 추가
   flex:false, //추가
   flexDirection: false, //추가
-  borderTop:false // 추가
+  borderTop:false, // 추가
   position:null,
   bottom:null,
   left:null,
