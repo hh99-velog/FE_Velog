@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { AiOutlineClockCircle,AiOutlineRise } from "react-icons/ai";
+import { AiOutlineClockCircle,AiOutlineRise,AiFillCaretDown } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 
 const ImageButton = (props) => {
@@ -8,11 +8,13 @@ const ImageButton = (props) => {
   const {
     clock, // 딜리트 아이콘
     search, // 서치 아이콘
+    Down, // 다운 아이콘
     color,
     _onClick,
     size,
     height,
     margin,
+    cursor,
   } = props;
 
   // props style
@@ -20,6 +22,7 @@ const ImageButton = (props) => {
     color: color,
     height: height,
     margin: margin,
+    cursor:cursor
   };
 
   if (props.clock) {
@@ -33,6 +36,19 @@ const ImageButton = (props) => {
     );
   }
   
+  if (props.Down) {
+    return (
+      <React.Fragment>
+        <Icon {...styles}>
+          <AiFillCaretDown
+            size={size}
+            onClick={_onClick}
+          ></AiFillCaretDown>
+        </Icon>
+      </React.Fragment>
+    );
+  }
+
   if (props.search) {
     return (
       <React.Fragment>
@@ -45,6 +61,7 @@ const ImageButton = (props) => {
       </React.Fragment>
     );
   }
+
 
   // default 오름차트 아이콘
   return (  
@@ -71,6 +88,7 @@ ImageButton.defaultProps = {
 // ImageButton 스타일드 컴포넌트
 const Icon = styled.div`
   display: inline-block;
+  cursor: ${(props) => props.cursor};
   color : ${(props) => props.color};
   margin: ${(props) => props.margin};
   cursor: ${(props) => props.cursor};

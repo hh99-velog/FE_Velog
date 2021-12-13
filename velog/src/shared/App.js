@@ -1,19 +1,20 @@
 import React from "react";
-import Grid from "../elements/Grid";
-import Text from "../elements/Text";
-import IconButton from "../elements/IconButton";
+import styled from "styled-components";
+import Header from "../components/Header";
 
 function App() {
   return (
-    <div className="App">
-      <Grid>  
-        <Text bold>가나다</Text>
-        <IconButton size='50px' clock></IconButton>
-        <IconButton size='50px' search></IconButton>
-        <IconButton size='50px'></IconButton>
-      </Grid>
-    </div>
+    <Wrap>
+      <Header></Header>
+    </Wrap>
   );
 }
+
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  min-height:100vh;
+  background: #f8f9fa;
+`
 
 export default App;
