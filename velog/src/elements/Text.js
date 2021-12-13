@@ -43,7 +43,7 @@ Text.defaultProps = {
   _onClick: () => {},
   bold: false,
   color: "#333",
-  bg: "#fff",
+  bg: null,
   size: "18px",
   margin: 0,
   align: null,
