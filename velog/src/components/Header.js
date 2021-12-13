@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import {Grid,IconButton,Button,Text,Input} from "../elements/ElementIndex";
-import { emailCheck,checkPassword } from "../shared/sinupCheck";
+import { emailCheck,checkPassword } from "../shared/signupCheck";
 
 const Header = (props) => {
  
@@ -161,7 +161,7 @@ const Header = (props) => {
                         <Input _onChange={(e)=>{setInPwd(e.target.value)}} type='password' margin='10px 0' width='100%' padding="15px" placeholder='패스워드를 입력해주세요'></Input>
                         <Button margin='10px 0' _onClick={signIn} width='100%' cursor='pointer' borderRadius='3px' border='1px solid rgb(18, 184, 134)' padding='10px 20px' bg='rgb(18, 184, 134)' color='#fff' size='16px' bold>로그인</Button>
                         <Grid margin='10px 0' is_flex>
-                            <Text size='0.9rem' bold margin='0 10px 0 auto'>회원이 아니신가요?</Text>
+                            <Text size='0.9rem' bold margin='0 10px 0 auto' color='#777'>회원이 아니신가요?</Text>
                             <Button _onClick={signUpModal} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='1rem' bold >회원가입</Button>
                         </Grid>
                     </Grid>
@@ -199,7 +199,7 @@ const Header = (props) => {
                         {pwdCheck===''?null:<Text margin='-11px 0 0 0' size='0.55rem' color={pwd===pwdCheck?'rgb(18, 184, 134)':'red'}>{pwd===pwdCheck?'비밀번호가 같습니다':'비밀번호가 다릅니다'}</Text>}
                         <Button margin='10px 0' _onClick={signUp} width='100%' cursor='pointer' borderRadius='3px' border='1px solid rgb(18, 184, 134)' padding='10px 20px' bg='rgb(18, 184, 134)' color='#fff' size='16px' bold>회원가입</Button>
                         <Grid margin='10px 0' is_flex>
-                            <Text size='0.9rem' bold margin='0 10px 0 auto'>계정이 있으신가요?</Text>
+                            <Text size='0.9rem' bold margin='0 10px 0 auto' color='#777'>계정이 있으신가요?</Text>
                             <Button _onClick={signInModal} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='1rem' bold >로그인</Button>
                         </Grid>
                     </Grid>
