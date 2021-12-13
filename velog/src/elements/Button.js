@@ -1,0 +1,44 @@
+import React from 'react';
+import styled from "styled-components"
+
+const Button = (props) => {
+    const {borderRadius,width,height,text, margin,children, _onClick, bg, color, border} = props
+    const styles = {borderRadius,width,height,text, margin, bg, color, border}
+    return(
+        <>
+        <BtnBox  
+        {...styles}
+        onClick = {_onClick}>
+        {text?text:children}</BtnBox>
+        </>
+
+    )
+}
+
+Button.defaultProps = {
+        _onClick :() => {},
+        margin: false,
+        text: false,
+        children: null,
+        width: null,
+        height: "",
+        bg : "#444444",
+        color: "#FFFFFF",
+        border: false,
+        borderRadius: false,
+         
+
+}
+
+const BtnBox = styled.button`
+width: ${(props) => props.width};
+${(props) =>(props.margin ?`margin:${props.margin};`:"")}
+${(props) =>(props.width?`width:${props.width};`:"") }
+${(props) =>(props.height?`height:${props.height};`:"") }
+${(props) =>(props.border?`border : 1px solid #000000;`:`border : none;`) }
+background-color: ${(props) => props.bg};
+color: ${(props) => props.color};
+${(props) =>(props.borderRadius?`border-radius:${props.borderRadius};`:"") }
+`
+
+export default Button
