@@ -7,6 +7,7 @@ function App() {
     <Wrap>
       <Header></Header>
     </Wrap>
+
   );
 }
 
