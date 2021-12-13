@@ -6,8 +6,8 @@ import { FiSearch } from "react-icons/fi";
 const ImageButton = (props) => {
   // props
   const {
-    clock, // 딜리트 아이콘
-    search, // 서치 아이콘
+    // clock, // 딜리트 아이콘
+    // search, // 서치 아이콘
     color,
     _onClick,
     size,
