@@ -22,12 +22,11 @@ function App() {
     <ConnectedRouter history={history}>
       <Wrap>
         <Header></Header>
+        <ManiBar></ManiBar>
         <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/main/:post_id" exact component={Detail} />
-          <ManiBar path="/" exact component={ManiBar}></ManiBar>
-          <ManiBar path="/recent" exact component={ManiBar}></ManiBar>
-          <AddPost path="/addpost" exact component={AddPost}></AddPost>
+          <Route path="/" exact component={Main} />
+          <Route path="/main/:post_id" exact component={Detail} />
+          <Route path="/addpost" exact component={AddPost} />
         </Switch>
       </Wrap>
     </ConnectedRouter>
