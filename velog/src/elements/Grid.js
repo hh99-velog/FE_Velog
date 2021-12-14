@@ -30,7 +30,11 @@ const Grid = (props) => {
     hoverColor,
     opacity,
     right,
-    top
+    top,
+    boxSizing, //추가
+    alignItems, //추가
+    flexNum, // 추가
+    postEvent, //추가
   } = props;
 
   // props style
@@ -59,7 +63,12 @@ const Grid = (props) => {
     hoverColor:hoverColor,
     opacity:opacity,
     right:right,
-    top:top
+    top:top,
+    boxSizing:boxSizing,//추가
+    alignItems:alignItems,//추가
+    flexNum:flexNum, //추가
+    postEvent:postEvent // 추가
+    
   };
 
   return (
@@ -94,7 +103,11 @@ Grid.defaultProps = {
   top:null,
   hoverColor:null,
   hoverBg:null,
-  opacity:1
+  opacity:1,
+  boxSizing:false,//추가
+  alignItems:false, //추가
+  flexNum:false,//추가
+  postEvent:false, //추가
 
 };
 
@@ -110,25 +123,31 @@ const GridBox = styled.div`
   left:${(props) => props.left};
   right:${(props) => props.right};
   top:${(props) => props.top};
-  ${(props) => (props.padding ? `padding : ${props.padding}` : "")};
-  ${(props) => (props.margin ? `margin : ${props.margin}` : "")};
-  ${(props) => (props.bg ? `background : ${props.bg}` : "")};
+  ${(props) => (props.padding ? `padding : ${props.padding};` : "")};
+  ${(props) => (props.margin ? `margin : ${props.margin};` : "")};
+  ${(props) => (props.bg ? `background : ${props.bg};` : "")};
   ${(props) => (props.is_flex? "display:flex; align-items:center;  justify-content: space-between;" : "")};
-  ${(props) => (props.border ? `border : ${props.border}` : "")};
-  ${(props) => (props.borderBottom ? `border-bottom : ${props.borderBottom}` : "")};
-  ${(props) => (props.hide ? `display:none` : "")};
-  ${(props) => (props.flexWrap ? `flex-wrap : ${props.flexWrap}` : "")}; //추가
-  ${(props) => (props.boxShadow ? `box-shadow : ${props.boxShadow}` : "")}; //추가
-  ${(props) => (props.overFlow? ` overflow: ${props.overflow}` : "")}; //추가  // 내용 넘칠때 어떻게 할지 정하는 css
-  ${(props) => (props.flex? `display:flex:${props.flex}` : "")} // 추가
-  ${(props) => (props.flexDirection? `flex-direction:${props.flexDirection}` : "")} //추가
-  ${(props) => (props.borderTop? `border-top:${props.borderTop}` : "")} //추가
+  ${(props) => (props.border ? `border : ${props.border};` : "")};
+  ${(props) => (props.borderBottom ? `border-bottom : ${props.borderBottom};` : "")};
+  ${(props) => (props.hide ? `display:none;` : "")};
+  ${(props) => (props.flexWrap ? `flex-wrap : ${props.flexWrap};` : "")}; //추가
+  ${(props) => (props.boxShadow ? `box-shadow : ${props.boxShadow};` : "")}; //추가
+  ${(props) => (props.overFlow? ` overflow: ${props.overflow};` : "")}; //추가  // 내용 넘칠때 어떻게 할지 정하는 css
+  ${(props) => (props.flex? `display:flex;` : "")} // 추가
+  ${(props) => (props.flexDirection? `flex-direction:${props.flexDirection};` : "")} //추가
+  ${(props) => (props.borderTop? `border-top:${props.borderTop};` : "")} //추가
   transition: all 0.2s;
   opacity:${(props) => props.opacity};
   &:hover{
     color:${(props) => props.hoverColor};
     background-color:${(props) => props.hoverBg};
     transition: all 0.2s;
+  ${(props) => (props.boxSizing? `box-sizing:${props.boxSizing};` : "")} //추가
+  ${(props) => (props.alignItems? `align-items:${props.alignItems};` : "")} //추가
+  ${(props) => (props.flexNum? `flex-grow:1; flex-shrink:1; flex-basis:0%;` : "")} //추가
+  ${(props) => (props.postEvent? `&:hover{ box-shadow : 1px 1px 20px gray};` : "")} //추가
+
+
   }
 `;
 export default Grid;

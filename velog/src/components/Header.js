@@ -121,7 +121,7 @@ const Header = (props) => {
                     ?<Grid is_flex margin='0 0 0 10px'>
                         <Button _onClick={addPost} hoverBg='#555' hoverColor='#fff' cursor='pointer' borderRadius='30px' border='1px solid #555' padding='5px 16px' bg='#fff' color='#555' size='0.8rem' bold>새 글 작성</Button>
                         <Grid _onClick={nva} cursor='pointer' width='auto' margin='0 0 0 10px' is_flex>
-                            <img src="https://reacteek-1.s3.ap-northeast-2.amazonaws.com/ch-1.png" style={{width:'2.5rem',height:'2.5rem',borderRadius:'50%'}}></img>
+                            <img alt ="" src="https://reacteek-1.s3.ap-northeast-2.amazonaws.com/ch-1.png" style={{width:'2.5rem',height:'2.5rem',borderRadius:'50%'}}></img>
                             <IconButton margin='0 0 0 5px' color='#777' size='12px' Down></IconButton>
                         </Grid>
                     </Grid>
