@@ -2,7 +2,7 @@ import React from "react";
 import styled   from "styled-components";
 
 const Input = (props) => {
-    const {type, value, placeholder,_onChange, width, multiLine,padding,margin} =props; 
+    const {type, value, placeholder,_onChange, width, multiLine,padding,margin,children} =props; 
     
     const styles = {
         margin:margin,
@@ -11,8 +11,9 @@ const Input = (props) => {
     }
 
     if(multiLine){
+    
         return (
-            <Textarea rows={5} value={value} placeholder={placeholder} onChange={_onChange}></Textarea> 
+            <Textarea  {...styles} value={value} placeholder={placeholder} onChange={_onChange}>{children}</Textarea> 
         )
       }
     
@@ -27,7 +28,8 @@ Input.defaultProps = {
     placeholder: "입력해주세요.",
     _onChange : () => {},
     width : null,
-    margin:null
+    margin:null,
+  
     
 }
 
@@ -36,6 +38,10 @@ const Textarea = styled.textarea`
     width: 100%;
     padding: 0;
     box-sizing: border-box;
+    border: none;
+    resize: none;
+    &:focus{ outline: none;}
+
 `;
 
 const InputSome = styled.input`
