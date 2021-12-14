@@ -8,8 +8,7 @@ import Image from '../elements/Image';
 const Post = (props) => {
     return(
     <>
-        <Grid flex = "flex"  bg = "white" borderRadius ="4px" boxShadow = "rgb(0 0 0 / 4%) 0px 4px 16px 0px" 
-        transition = "box-shadow 0.25s cubic-bezier(0.47, 0, 0.75, 0.72) 0s, transform 0.25s ease-in 0s" overFlow = "hidden" flexDirection = "column" >
+    <Grid flex = "flex"  bg = "white" borderRadius ="4px" boxShadow = "rgb(0 0 0 / 4%) 0px 4px 16px 0px" transition = "box-shadow 0.25s cubic-bezier(0.47, 0, 0.75, 0.72) 0s, transform 0.25s ease-in 0s" overFlow = "hidden" flexDirection = "column" >
         <Grid  margin = "0 auto"width =  "100%" borderRadius = "4px" >
             <Image/>
         </Grid>
