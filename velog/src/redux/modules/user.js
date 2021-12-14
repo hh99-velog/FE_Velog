@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
+// axios파일
 import { apis } from "../../shared/axios";
 
 
@@ -71,8 +72,6 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
       });
   };
 };
-
-// 닉네임 체크
 
 // 로그아웃
 const logoutDB = () => {

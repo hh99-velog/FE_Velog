@@ -15,7 +15,6 @@ const Image = (props) => {
             <>
               <InBox {...styles}/>  
             </>
-
         )
     }
 
@@ -28,9 +27,9 @@ Image.defaultProps = {
 }
 
 const InBox= styled.div`
-width: auto;
+width: 100%;
 max-width:100%;
-height:0%;
+height:100%;
 position: relative; // 상대적인 포지션
 padding-top: 52.1921%; // 75%를 주는 이유는 넓이가 100%이기 때문에 4:3비율을 맟추기 위해
 overflow: hidden; // 이 박스 영역을 벗어나면 숨겨버린다.
@@ -40,7 +39,7 @@ box-sizing: content-box;
 object-fit: cover;
 box-sizing: inherit;
 ${(props) => (props.borderRadius ? `border-radius : ${props.borderRadius}` : "")}; //추가
-${(props) => (props.margin ? `margin : ${props.margin}` : "")}; //추가
+
 
 
 
