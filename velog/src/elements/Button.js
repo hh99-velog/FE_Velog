@@ -2,8 +2,8 @@ import React from 'react';
 import styled from "styled-components"
 
 const Button = (props) => {
-    const {borderRadius,width,height,text, margin,children, _onClick, bg, color, border,padding,size,bold,cursor,hoverColor,hoverBg} = props
-    const styles = {borderRadius,width,height,text, margin, bg, color, border,padding:padding,size:size,bold:bold,cursor:cursor,hoverColor,hoverBg}
+    const {flex,borderRadius,width,height,text, margin,children, _onClick, bg, color, border,padding,size,bold,cursor,hoverColor,hoverBg} = props
+    const styles = {flex,borderRadius,width,height,text, margin, bg, color, border,padding:padding,size:size,bold:bold,cursor:cursor,hoverColor,hoverBg}
     return(
         <>
         <BtnBox  
@@ -31,7 +31,8 @@ Button.defaultProps = {
     bold:null,
     cursor:null,
     hoverColor:null,
-    hoverBg:null
+    hoverBg:null,
+    flex :false, //추가
 }
 
 const BtnBox = styled.button`
@@ -54,6 +55,7 @@ transition: all 0.2s;
     background-color:${(props) => props.hoverBg};
     transition: all 0.2s;
 }
+${(props) =>(props.flex ?`display:flex;align-items:center;  justify-content:space-evenly;`:"")} //추가
 `
 
 export default Button
