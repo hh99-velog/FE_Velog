@@ -15,6 +15,7 @@ const Post = (props) => {
          transition = "box-shadow 0.25s cubic-bezier(0.47, 0, 0.75, 0.72) 0s, transform 0.25s ease-in 0s" overFlow = "hidden" flexDirection = "column" 
          _onClick ={()=> {history.push(`/main/${props.post_id}`)}}>  
         <Grid  is_flex position = "relative" margin = "0 auto"width =  "100%" borderRadius = "4px" >
+ 
             <Image/>
         </Grid>
         <Grid  flex="flex"  flexDirection = "column" padding ="1rem">

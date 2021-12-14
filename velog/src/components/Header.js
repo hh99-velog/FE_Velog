@@ -1,10 +1,16 @@
 import React,{useState} from "react";
 import styled from "styled-components";
+import { withRouter } from 'react-router-dom'
+import { apis } from '../shared/axios'
+
+//컴포넌트
 import {Grid,IconButton,Button,Text,Input} from "../elements/ElementIndex";
+
+// JS파일
 import { emailCheck,checkPassword } from "../shared/signupCheck";
+import { history } from "../redux/configureStore";
 
 const Header = (props) => {
- 
 
     // login 분기에 따라 header 설정
     const [isLogin,setIsLogin] = useState(false)
@@ -48,6 +54,32 @@ const Header = (props) => {
         setUpModal(true)
         setInModal(false)
     }
+    //아이디 체크 
+    const idDuplicate = () => {
+        console.log('아이디체크')
+        apis
+        .idDuplicate(id)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const nickNameDuplicate = () => {
+        console.log('닉네임체크')
+        apis
+        .nickNameDuplicate(userName)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+
     const signUp = () => {
         // 회원가입 API 연결
         if(id==='' || pwd ==='' || pwdCheck==='' || userName==='') {
@@ -59,12 +91,6 @@ const Header = (props) => {
         console.log(id,pwd,userName,pwdCheck)
     }
 
-    const idDuplicate = () => {
-        // 아이디 중복체크 api
-    }
-    const nickNameDuplicate = () => {
-        // 닉네임 중복체크 api
-    }
     // SignOut
     const signOut = () => {
         setIsLogin(false)
@@ -75,6 +101,8 @@ const Header = (props) => {
     // addPost
     const addPost = () => {
         // 이후 포스트 추가 페이지로 연결
+        setNav(false)
+        history.push('/addpost')
         console.log('포스트 추가')
     }
 
@@ -87,21 +115,9 @@ const Header = (props) => {
             setNav(true)
         }
     }
-    console.log(id)
-    // 트렌드 최신 버튼 애니메이션 구현
-    const [left,setLeft] = useState(0)
-    const [trendOp,setTrendOp] = useState(1)
-    const [recentOp,setRecentOp] = useState(0.5)
 
-    const trend = () => {
-        setLeft('0')
-        setTrendOp(1)
-        setRecentOp(0.5)
-    }
-    const recent = () => {
-        setLeft('114px')
-        setTrendOp(0.5)
-        setRecentOp(1)
+    if(props.location.pathname === '/addpost') {
+        return null
     }
 
     return(
@@ -134,17 +150,6 @@ const Header = (props) => {
                     </NavBar>
                     :null}
                 </Grid>
-            </Grid>
-            <Grid is_flex height='64px' margin='1.5rem 0 0 0' position='relative'>
-                <Grid _onClick={trend} opacity={trendOp} padding='10px' cursor='pointer' width='auto' is_flex>
-                    <IconButton height='22px' size='22px'></IconButton>
-                    <Text bold margin='0 0 0 10px'>트렌딩</Text>
-                </Grid>
-                <Grid _onClick={recent} opacity={recentOp} padding='10px' cursor='pointer' width='auto' is_flex margin='0 auto 0 15px'>
-                    <IconButton height='22px' clock size='22px'></IconButton>
-                    <Text bold margin='0 0 0 10px'>최신</Text>
-                </Grid>
-                <Grid width='114px' bottom='10px' left={left} position='absolute' borderBottom='2px solid #000'></Grid>
             </Grid>
             {inModal ? 
                 <SignIn>
@@ -181,16 +186,16 @@ const Header = (props) => {
                         <Text margin='10px 0' size='22px' bold>회원가입</Text>
                         <Text margin='10px 0' size='14px'>어서오세요 반갑습니다!</Text>
                         <Grid position='relative'>
-                            <Input _onChange={(e)=>{setId(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='이메일 형식으로 입력해주세요'></Input>
+                            <Input  _onChange={(e)=>{setId(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='이메일 형식으로 입력해주세요'></Input>
                             <Grid width='auto' position='absolute' top='20px' right='10px'>
-                                <Button _onChange={idDuplicate} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
+                                <Button _onClick={idDuplicate} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
                             </Grid>
                         </Grid>
                         {id===''?null:<Text margin='-11px 0 0 0' size='0.55rem' color={emailCheck(id)?'rgb(18, 184, 134)':'red'}>{emailCheck(id)?'알맞은 이메일 형식입니다':'잘못된 이메일 형식입니다'}</Text>}
                         <Grid position='relative'> 
                             <Input _onChange={(e)=>{setUserName(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='닉네임을 입력해주세요'></Input>
                             <Grid width='auto' position='absolute' top='20px' right='10px'>
-                                <Button _onChange={nickNameDuplicate} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
+                                <Button _onClick={nickNameDuplicate} cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
                             </Grid>
                         </Grid>
                         <Input _onChange={(e)=>{setPwd(e.target.value)}} type='password' margin='10px 0' width='100%' padding="15px" placeholder='6 ~ 10자 영문, 숫자 조합'></Input>
@@ -284,4 +289,4 @@ const ModalInner = styled.div`
     height:100%
     }
 `
-export default Header
+export default withRouter(Header)
