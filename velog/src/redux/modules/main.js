@@ -2,6 +2,7 @@ import { createAction,handleActions } from "redux-actions"
 import { produce } from "immer"
 
 // axios파일
+import axios from "axios";
 import { apis } from "../../shared/axios";
 
 const GET_POST = "GET_POST"
@@ -19,31 +20,47 @@ const initialState ={
 const getPostListDB = () => {
     return function (dispatch, getState, { history }) {
   
-      apis
-        .getPost()
-        .then((res) => {
-          // 받는 데이터 분류
-            console.log(res)
-            dispatch(getPostList({res}));
+        axios({
+            method: "get",
+            url: "https://run.mocky.io/v3/24e989e2-51f9-455e-ae5e-24454adef97e",
+        }).then((res) => {
+            const data = res.data.result
+            dispatch(getPostList(data))
+        }).catch((err) => {
+            console.log(err)
         })
-        .catch((err) => {
-            console.log(err);
-            window.alert(err.response.data.errorMessage);
-            return;
-        });
+    //   apis
+    //     .getPost()
+    //     .then((res) => {
+    //       // 받는 데이터 분류
+    //         console.log(res)
+    //         dispatch(getPostList({res}));
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         window.alert(err.response.data.errorMessage);
+    //         return;
+    //     });
     };
-  };
+};
 
 // ADD POST
-const addPostDB = () => {
+const addPostDB = (addFormData) => {
     return function (dispatch, getState, { history }) {
   
-      apis
-        .getPost()
+        const accessToken = window.localStorage.getItem('token')
+
+        axios({
+            method: "post",
+            url: "",
+            data: addFormData,
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "X-AUTH-TOKEN": `${accessToken}`,
+            },
+        })
         .then((res) => {
-          // 받는 데이터 분류
             console.log(res)
-            dispatch(getPostList({res}));
         })
         .catch((err) => {
             console.log(err);
@@ -51,20 +68,23 @@ const addPostDB = () => {
             return;
         });
     };
-  };
+};
 
 export default handleActions({
     [GET_POST] : (state,action) => produce(state,(draft) => {
+        console.log(action.payload.list)
         draft.list = action.payload.list
     }),
     [ADD_POST] : (state,action) => produce(state,(draft) => {
-        draft.list = action.payload.list
+        
     })
 },initialState)
 
 const actionCreators = {
     getPostList,
-    getPostListDB
+    getPostListDB,
+    addPost,
+    addPostDB
 
 }
 

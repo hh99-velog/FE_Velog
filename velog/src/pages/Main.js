@@ -1,33 +1,70 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styled from "styled-components"
+import { useDispatch,useSelector } from 'react-redux'
 import { history } from '../redux/configureStore'
 
 import Grid from "../elements/Grid"
 import Post from "../components/Post"
 
+// API
+import { actionCreators as postActions} from '../redux/modules/main'
 
 const Main = (props) => {
+    const dispatch = useDispatch()
 
-    console.log('메인화면')
+    // 패스값 가져오기
+    const pathName = history.location.pathname;
+    const name = pathName.split("/");
 
-    return (
-        <Grid flex='flex' padding= "20px 0px 0px 0px" margin = "-1rem">   
+    useEffect(() => {
+        dispatch(postActions.getPostListDB())
+    },[])
+
+    const lists = useSelector((state) => state.main.list)
+    const list = lists.map(s =>s)
+    
+    // 최신순 정렬
+    if(name[1] === 'recent') {
+        list.sort((a,b) => {
+            return Number(b.board_id) - Number(a.board_id)
+        })
+        return(
             <MainStyle>
-                <Post/>
+                {list.map((list,index) => {
+                    return(
+                        <Post list={list}/>
+                    )
+                })}
             </MainStyle>
-        </Grid>   
+        )
+    }
+    
+    // 좋아요 정렬
+    list.sort((a,b) => {
+        return Number(b.like) - Number(a.like)
+    })
+    return (
+        <MainStyle>
+            {list.map((list,index) => {
+                return(
+                    <Post list={list}/>
+                )
+            })}
+        </MainStyle>
     )
 }
+
 const MainStyle = styled.div`
     display: flex;
     width: 100%;
     max-width: 1730px;
-    margin:0 auto;
+    margin:20px auto 0 auto;
     flex-wrap:wrap;
+    gap:20px;
     flex-direction:row;
     box-sizing:border-box;
     @media only screen and (max-width: 1730px) {
-        padding :0 20px
+        padding: 0 20px;
     }
   `
 

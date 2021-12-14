@@ -22,7 +22,7 @@ export const apis = {
   // nickname = {nickname:nickname}
   nickNameDuplicate: (nickname) => instance.post("/user/nickname/duplicate", nickname),
 
-  // Board API
+  // Board API [정연재 : 완료]
   getPost: () => instance.get(`/api/boards`),
   // data = {title: title, content: content, nickname:nickname, multipartFile: 이미지}
   addPost: (data) => instance.post("/api/boards", data),
