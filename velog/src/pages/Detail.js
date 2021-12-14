@@ -44,13 +44,33 @@ const Detail = (props) => {
             </Button>
           </Grid>
         </Grid>
-        <Grid   margin = "0px auto" padding ="50px 0px 0px 0px">
-            <Image margin ="10px"borderRadius= "0px"/>
+        <Grid   margin = "0px auto" padding ="50px 20px 0px 20px">
+            <Image borderRadius= "0px"/>
             </Grid>
             </MaxWidth>
             <Grid  margin = "0 auto"width = "800px" padding ="50px 0px 0px 0px">
             <Input  multiLine>{props.content}</Input>
+            <Grid is_flex justifyContent = "flex-end" >
+            <Grid is_flex  width = "200px" height ="30px" margin ="50px 0px" >
+                <Button margin = "0px 15px"bg = "white" 
+                borderRadius ="30px" 
+                border ="1px solid black" 
+                width = "100%" 
+                height ="100%">
+                    <Text>수정</Text>
+                    </Button>
+                <Button  bg = "white"
+                 borderRadius = "30px" 
+                 border ="1px solid black" 
+                 width = "100%" 
+                 height ="100%">
+                     <Text>삭제</Text>
+                     </Button>
+             </Grid>
+             </Grid>
+
             </Grid>
+           
 
       </Grid>
     

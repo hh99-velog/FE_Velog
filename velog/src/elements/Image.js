@@ -2,13 +2,13 @@ import React from 'react'
 import styled from "styled-components"
 
 const Image = (props) => {
-    const {margin,src, size,borderRadius} = props
+    const {src, size,borderRadius} = props
 
     const styles = { // style끼리 구분하는게 편해서
         src : src,
         size: size,
         borderRadius:borderRadius,
-        margin
+       
     }
 
         return(
@@ -28,7 +28,7 @@ Image.defaultProps = {
 }
 
 const InBox= styled.div`
-width: auto;
+width: 100%;
 max-width:100%;
 height:0%;
 position: relative; // 상대적인 포지션
@@ -40,7 +40,7 @@ box-sizing: content-box;
 object-fit: cover;
 box-sizing: inherit;
 ${(props) => (props.borderRadius ? `border-radius : ${props.borderRadius}` : "")}; //추가
-${(props) => (props.margin ? `margin : ${props.margin}` : "")}; //추가
+
 
 
 
