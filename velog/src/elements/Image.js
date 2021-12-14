@@ -11,10 +11,8 @@ const Image = (props) => {
 
         return(
             <>
-          
               <InBox {...styles}/>  
             </>
-
         )
     }
 

@@ -59,9 +59,8 @@ const HeaderStyle = styled.header`
     margin:0 auto;
     box-sizing:border-box;
     @media only screen and (max-width: 1730px) {
-    padding :0 20px
-    z-index:9;
-  }
+        padding :0 20px;
+    }
 `
 
 export default withRouter(ManiBar)

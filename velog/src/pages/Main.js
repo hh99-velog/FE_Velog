@@ -7,11 +7,14 @@ import Post from "../components/Post"
 
 
 const Main = (props) => {
+
+    console.log('메인화면')
+
     return (
         <Grid flex='flex' padding= "20px 0px 0px 0px" margin = "-1rem">   
-        <MainStyle>
-        <Post/>
-        </MainStyle>
+            <MainStyle>
+                <Post/>
+            </MainStyle>
         </Grid>   
     )
 }
@@ -24,7 +27,8 @@ const MainStyle = styled.div`
     flex-direction:row;
     box-sizing:border-box;
     @media only screen and (max-width: 1730px) {
-    padding :0 20px
-  }`
+        padding :0 20px
+    }
+  `
 
 export default Main
