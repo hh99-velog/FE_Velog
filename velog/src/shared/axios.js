@@ -12,7 +12,7 @@ const instance = axios.create({
 });
 
 export const apis = {
-  // 로그인 API
+  // 로그인 API [정연재 : 완료]
   // data  = {username:id , password: pw}
   signIn: (data) => instance.post("/api/user/login", data),
   // data  = {username:id ,nickname:nickname, pwd: pw, pwdConfirm: pw}

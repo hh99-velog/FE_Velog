@@ -116,6 +116,10 @@ const Header = (props) => {
         }
     }
 
+    const home = () => {
+        history.push('/')
+    }
+
     if(props.location.pathname === '/addpost') {
         return null
     }
@@ -124,10 +128,10 @@ const Header = (props) => {
         <HeaderStyle>
             <Grid is_flex height='64px'>
                 <Grid width='auto'>
-                    <h1 style={{cursor:'pointer'}}>velgo</h1>
+                    <h1 onClick={home} style={{cursor:'pointer'}}>velgo</h1>
                 </Grid>
                 <Grid position='relative' is_flex width='auto'>
-                    <Grid width='40px' height='40px' padding='8px' cursor='pointer' hoverBg='#eee' borderRadius='50%'>
+                    <Grid width='auto' height='36px' padding='8px' cursor='pointer' hoverBg='#eee' borderRadius='50%'>
                         <IconButton margin='0 0 0 auto' IconButton size='20px' search></IconButton>
                     </Grid>
                     {!isLogin
@@ -227,8 +231,8 @@ const HeaderStyle = styled.header`
         font-size:26px;
     }
     @media only screen and (max-width: 1730px) {
-    padding :0 20px
-  }
+        padding :0 20px
+    }
 
 `
 const NavBar = styled.nav`
