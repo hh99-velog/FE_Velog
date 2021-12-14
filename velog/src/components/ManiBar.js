@@ -11,9 +11,9 @@ import { history } from "../redux/configureStore";
 const ManiBar = (props) => {
  
     // 트렌드 최신 버튼 애니메이션 구현
-    const [left,setLeft] = useState(0)
-    const [trendOp,setTrendOp] = useState(1)
-    const [recentOp,setRecentOp] = useState(0.5)
+    const [left,setLeft] = useState(props.location.pathname === '/recent'? '114px':0)
+    const [trendOp,setTrendOp] = useState(props.location.pathname === '/recent'? 0.5:1)
+    const [recentOp,setRecentOp] = useState(props.location.pathname === '/recent'? 1:0.5)
 
     const trend = () => {
         setLeft('0')

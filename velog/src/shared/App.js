@@ -25,6 +25,7 @@ function App() {
         <ManiBar></ManiBar>
         <Switch>
           <Route path="/" exact component={Main} />
+          <Route path="/recent" exact component={Main} />
           <Route path="/main/:post_id" exact component={Detail} />
           <Route path="/addpost" exact component={AddPost} />
         </Switch>

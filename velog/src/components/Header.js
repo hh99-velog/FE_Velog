@@ -229,6 +229,7 @@ const HeaderStyle = styled.header`
         margin:0;
         font-weight:500;
         font-size:26px;
+        color:#777
     }
     @media only screen and (max-width: 1730px) {
         padding :0 20px
