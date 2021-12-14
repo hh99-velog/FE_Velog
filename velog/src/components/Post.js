@@ -12,7 +12,7 @@ const Post = (props) => {
    
      
         <Grid postEvent flex="flex" height = "auto" margin = "1rem" width= "23% "   bg = "white" borderRadius ="4px" boxShadow = "rgb(0 0 0 / 4%) 0px 4px 16px 0px" 
-         transition = "box-shadow 0.25s cubic-bezier(0.47, 0, 0.75, 0.72) 0s, transform 0.25s ease-in 0s" overFlow = "hidden" flexDirection = "column" 
+          overFlow = "hidden" flexDirection = "column" 
          _onClick ={()=> {history.push(`/main/${props.post_id}`)}}>  
         <Grid  is_flex position = "relative" margin = "0 auto"width =  "100%" borderRadius = "4px" >
  
@@ -46,7 +46,7 @@ const Post = (props) => {
 
 Post.defaultProps = {
     title :"안녕",
-    content : "너무 너무 어려워 ㅇ    ㅁㄴㄹㄴㅇㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㄹ      ㅏㅓㅏ  ㅓㅏㅓㅣ    ㄴㅇㅁㄹㄴㅇㄹㄴㅇㄴㅇㄹㅇㄹㄴㅇㄹㅓㅏ    ㅣ      ㅟㅏ",
+    content : "안녕하세요 저는 윤석준이라고 합니다!!!!!!!!!!",
     createdAt : "2021년 12월 13일",
     nickname : "윤석준",
     like:"5",

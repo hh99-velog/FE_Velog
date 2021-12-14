@@ -142,12 +142,13 @@ const GridBox = styled.div`
     color:${(props) => props.hoverColor};
     background-color:${(props) => props.hoverBg};
     transition: all 0.2s;
+  }
   ${(props) => (props.boxSizing? `box-sizing:${props.boxSizing};` : "")} //추가
   ${(props) => (props.alignItems? `align-items:${props.alignItems};` : "")} //추가
   ${(props) => (props.flexNum? `flex-grow:1; flex-shrink:1; flex-basis:0%;` : "")} //추가
-  ${(props) => (props.postEvent? `&:hover{ box-shadow : 1px 1px 20px gray};` : "")} //추가
+  ${(props) => (props.postEvent? `&:hover{ transform: translateY(-8px); box-shadow: rgb(0 0 0 / 8%) 0px 12px 20px 0px; 
+} transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;` : "")} //추가
 
 
-  }
 `;
 export default Grid;
