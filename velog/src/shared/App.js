@@ -25,6 +25,7 @@ function App() {
         <ManiBar></ManiBar>
         <Switch>
           <Route path="/" exact component={Main} />
+          <Route path="/recent" exact component={Main} />
           <Route path="/main/:post_id" exact component={Detail} />
           <Route path="/addpost" exact component={AddPost} />
         </Switch>
@@ -37,7 +38,7 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   min-height:100vh;
-  background: #f8f9fa;
+  background: #fcfcfc;
 `
 
 export default App;
