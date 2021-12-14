@@ -8,7 +8,7 @@ import Post from "../components/Post"
 
 const Main = (props) => {
     return (
-        <Grid  plex = "plex" padding= "20px 0px 0px 0px" margin = "-1rem">   
+        <Grid flex='flex' padding= "20px 0px 0px 0px" margin = "-1rem">   
         <MainStyle>
         <Post/>
         </MainStyle>
