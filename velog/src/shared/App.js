@@ -15,6 +15,7 @@ import Detail from "../pages/Detail"
 import ManiBar from "../components/ManiBar";
 import NotFound from "../pages/Notfound";
 import AddPost from "../pages/AddPost";
+import EditPost from "../pages/EditPost";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/recent" exact component={Main} />
           <Route path="/main/:board_id" exact component={Detail} />
           <Route path="/addpost" exact component={AddPost} />
+          <Route path="/editpost/:board_id" exact component={EditPost} />
         </Switch>
       </Wrap>
     </ConnectedRouter>
