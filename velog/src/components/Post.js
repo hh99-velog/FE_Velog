@@ -107,6 +107,7 @@ const PostWrap = styled.div`
 Post.defaultProps = {
     title :"안녕",
     content : "안녕하세요 저는 윤석준이라고 합니다!!!!!!!!!!",
+
     createdAt : "2021년 12월 13일",
     nickname : "윤석준",
     like:"5",

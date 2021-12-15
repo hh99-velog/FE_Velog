@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useSelector} from "react-redux";
+import { useParams } from "react-router-dom";
+
 
 import Grid from "../elements/Grid";
 import Text from "../elements/Text";
@@ -9,7 +12,15 @@ import Image from "../elements/Image";
 import Input from "../elements/Input"
 
 const Detail = (props) => {
+    let { board_id } = useParams(); // board_id라는 변수는 :board_id 자리에 있던 숫자를 의미
+    const post_list = useSelector((store) => store.main.list );
+    console.log(post_list)
+    const user_info = useSelector((store) => store.user);
+    console.log(user_info)
 
+    const list = post_list.find((data)=>{return data.board_id === board_id}) // 데이터의 board_id와 :board_id 자리에 있던 숫자가 같을 때만 리턴
+
+    
 
   return (
 
@@ -17,13 +28,13 @@ const Detail = (props) => {
       <Grid  margin="0 auto">
       <MaxWidth >
         <Text margin="0px 0px 32px 0px" bold size="55px">
-          안녕하세요 저는 윤석준입니다!!.
+          {list.title}
         </Text>
         <Grid is_flex>
           <Grid is_flex>
             <Grid flex="flex">
-              <Text bold>{`${props.nickname} ·`}</Text>
-              <Text margin="0px 0px 0px 5px">{props.createdAt}</Text>
+              <Text bold>{`${list.nickname} ·`}</Text>
+              <Text margin="0px 0px 0px 5px">{list.createdAt}</Text>
             </Grid>
 
             <Button
@@ -40,17 +51,37 @@ const Detail = (props) => {
                   d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
                 ></path>
               </svg>
-              <Text color="rgb(173, 181, 189)">{props.like}</Text>
+              <Text color="rgb(173, 181, 189)">{list.like}</Text>
             </Button>
           </Grid>
         </Grid>
-        <Grid   margin = "0px auto" padding ="50px 0px 0px 0px">
-            <Image margin ="10px"borderRadius= "0px"/>
+        <Grid   margin = "0px auto" padding ="50px 20px 0px 20px">
+            <Image borderRadius= "0px"/>
             </Grid>
             </MaxWidth>
             <Grid  margin = "0 auto"width = "800px" padding ="50px 0px 0px 0px">
-            <Input  multiLine>{props.content}</Input>
+            <Input  multiLine>{list.content}</Input>
+            <Grid is_flex justifyContent = "flex-end" >
+            <Grid is_flex  width = "200px" height ="30px" margin ="50px 0px" >
+                <Button margin = "0px 15px"bg = "white" 
+                borderRadius ="30px" 
+                border ="1px solid black" 
+                width = "100%" 
+                height ="100%">
+                    <Text>수정</Text>
+                    </Button>
+                <Button  bg = "white"
+                 borderRadius = "30px" 
+                 border ="1px solid black" 
+                 width = "100%" 
+                 height ="100%">
+                     <Text>삭제</Text>
+                     </Button>
+             </Grid>
+             </Grid>
+
             </Grid>
+           
 
       </Grid>
     

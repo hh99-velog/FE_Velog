@@ -2,13 +2,13 @@ import React from 'react'
 import styled from "styled-components"
 
 const Image = (props) => {
-    const {margin,src, size,borderRadius} = props
+    const {src, size,borderRadius} = props
 
     const styles = { // style끼리 구분하는게 편해서
         src : src,
         size: size,
         borderRadius:borderRadius,
-        margin
+       
     }
 
         return(
