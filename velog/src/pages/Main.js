@@ -61,7 +61,6 @@ const MainStyle = styled.div`
     margin:20px auto 0 auto;
     flex-wrap:wrap;
     gap:20px;
-    flex-direction:row;
     box-sizing:border-box;
     @media only screen and (max-width: 1730px) {
         padding: 0 20px;

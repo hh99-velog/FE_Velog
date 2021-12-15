@@ -22,7 +22,7 @@ const getPostListDB = () => {
   
         axios({
             method: "get",
-            url: "https://run.mocky.io/v3/24e989e2-51f9-455e-ae5e-24454adef97e",
+            url: "https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733",
         }).then((res) => {
             const data = res.data.result
             dispatch(getPostList(data))
@@ -72,7 +72,6 @@ const addPostDB = (addFormData) => {
 
 export default handleActions({
     [GET_POST] : (state,action) => produce(state,(draft) => {
-        console.log(action.payload.list)
         draft.list = action.payload.list
     }),
     [ADD_POST] : (state,action) => produce(state,(draft) => {

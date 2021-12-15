@@ -117,7 +117,7 @@ const Header = (props) => {
     }
 
     const home = () => {
-        history.push('/')
+        window.location.href='/'
     }
 
     if(props.location.pathname === '/addpost') {
