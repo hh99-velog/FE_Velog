@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import Swal from 'sweetalert2'
 
 // axios파일
 import { apis } from "../../shared/axios";
