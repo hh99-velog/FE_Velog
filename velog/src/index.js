@@ -9,6 +9,7 @@ import store from "./redux/configureStore";
 
 ReactDOM.render(
   <Provider store={store}>
+    {/* Provider 감싼 모든 태그에 state 공유가능  */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
