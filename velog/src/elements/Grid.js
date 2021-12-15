@@ -35,6 +35,7 @@ const Grid = (props) => {
     alignItems, //추가
     flexNum, // 추가
     postEvent, //추가
+    justifyContent //추가
   } = props;
 
   // props style
@@ -67,7 +68,8 @@ const Grid = (props) => {
     boxSizing:boxSizing,//추가
     alignItems:alignItems,//추가
     flexNum:flexNum, //추가
-    postEvent:postEvent // 추가
+    postEvent:postEvent, // 추가
+    justifyContent //추가
     
   };
 
@@ -108,6 +110,7 @@ Grid.defaultProps = {
   alignItems:false, //추가
   flexNum:false,//추가
   postEvent:false, //추가
+  justifyContent:false //추가
 
 };
 
@@ -148,6 +151,8 @@ const GridBox = styled.div`
   ${(props) => (props.flexNum? `flex-grow:1; flex-shrink:1; flex-basis:0%;` : "")} //추가
   ${(props) => (props.postEvent? `&:hover{ transform: translateY(-8px); box-shadow: rgb(0 0 0 / 8%) 0px 12px 20px 0px; 
 } transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;` : "")} //추가
+ ${(props) => (props.justifyContent? `justify-content:${props.justifyContent};` : "")} //추가
+
 
 
 `;
