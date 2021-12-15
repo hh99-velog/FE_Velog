@@ -74,7 +74,6 @@ const Post = (props) => {
 
 const PostWrap = styled.div`
     width: calc((100% - 80px)/5);
-    gap:20px;
     @media only screen and (max-width: 1730px) {
         width: calc((100% - 60px)/4);
     }

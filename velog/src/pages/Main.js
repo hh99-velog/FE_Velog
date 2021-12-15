@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import styled from "styled-components"
 import { useDispatch,useSelector } from 'react-redux'
 import { history } from '../redux/configureStore'
+import Swal from 'sweetalert2'
 
 import Grid from "../elements/Grid"
 import Post from "../components/Post"

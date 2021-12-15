@@ -117,10 +117,10 @@ const Header = (props) => {
     }
 
     const home = () => {
-        window.location.href='/'
+        history.push('/')
     }
 
-    if(props.location.pathname === '/addpost') {
+    if(props.location.pathname === '/addpost' || props.location.pathname.split('/')[1] === 'editpost') {
         return null
     }
 

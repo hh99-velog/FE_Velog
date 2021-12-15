@@ -4,13 +4,16 @@ import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
-import Swal from 'sweetalert2'
 
 //컴포넌트
 import {Grid,Button,Image} from "../elements/ElementIndex";
 
-const AddPost = (props) => {
+const EditPost = (props) => {
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        // 주소로 받은 보드아이디 조회
+    },[])
 
     // 이미지 파일 url따기
     const filesInput = useRef()
@@ -47,7 +50,7 @@ const AddPost = (props) => {
     }
 
     // add post
-    const addPost = () => {
+    const editPost = () => {
         if(title ==='' || content === '') {
             alert('텍스트를 입력하세요')
             return
@@ -65,12 +68,6 @@ const AddPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
-        Swal.fire(
-            'The Internet?',
-            'That thing is still around?',
-            'question'
-          )
-        
     }
 
     // 나가기 버튼
@@ -87,12 +84,12 @@ const AddPost = (props) => {
                 <textarea name='content' value={content} style={{outline:'none'}} placeholder="텍스트를 입력해주세요..." className="text" onChange={textChange}></textarea>
                 <Grid width='100%' height='95px' is_flex>
                     <Button _onClick={exit} hoverBg='#eee' color='#777' bg='#fff' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>나가기</b></Button>
-                    <Button _onClick={addPost} borderRadius='3px' hoverBg='rgb(27, 231, 170)' bg='rgb(18, 184, 134)' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>출간하기</b></Button>
+                    <Button _onClick={editPost} borderRadius='3px' hoverBg='rgb(27, 231, 170)' bg='rgb(18, 184, 134)' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>수정하기</b></Button>
                 </Grid>
             </div>
             <div className="preview">
                 <h1>{title}</h1>
-                {preview?<img alt="예시이미지" src={preview?preview:null}></img>:null}
+                {preview?<Image shape='rectangle' src={preview?preview:null}></Image>:null}
                 <MarkdownRender>{content}</MarkdownRender>
             </div>
         </AddPostStyle>
@@ -151,4 +148,4 @@ const AddPostStyle = styled.div`
 
 `
 
-export default AddPost;
+export default EditPost;
