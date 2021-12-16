@@ -66,7 +66,8 @@ const AddPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
-        
+        console.log(data)
+        console.log(imageFile)
         dispatch(postActions.addPostDB(addFormData))
         
     }

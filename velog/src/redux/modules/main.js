@@ -19,29 +19,18 @@ const initialState ={
 // GET POST
 const getPostListDB = () => {
     return function (dispatch, getState, { history }) {
-  
 
-        axios({
-            method: "get",
-            url: "https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733",
-        }).then((res) => {
-            const data = res.data.result
-            dispatch(getPostList(data))
-        }).catch((err) => {
-            console.log(err)
+        apis
+        .getPost()
+        .then((res) => {
+          // 받는 데이터 분류
+            const list = res.data.data
+            dispatch(getPostList({list}));
         })
-
-        // apis
-        // .getPost()
-        // .then((res) => {
-        //   // 받는 데이터 분류
-        //     console.log(res)
-        //     dispatch(getPostList({res}));
-        // })
-        // .catch((err) => {
-        //     console.log(err);
-        //     return;
-        // });
+        .catch((err) => {
+            console.log(err);
+            return;
+        });
     };
 };
 
@@ -57,11 +46,12 @@ const addPostDB = (addFormData) => {
             data: addFormData,
             headers: {
               "Content-Type": "multipart/form-data",
-              "X-AUTH-TOKEN": `${accessToken}`,
+              "Authorization": `Bearer ${accessToken}`,
             },
         })
         .then((res) => {
             console.log(res)
+            alert('게시글 업로드 완료')
         })
         .catch((err) => {
             console.log(err);
@@ -73,7 +63,7 @@ const addPostDB = (addFormData) => {
 
 export default handleActions({
     [GET_POST] : (state,action) => produce(state,(draft) => {
-        draft.list = action.payload.list
+        draft.list = action.payload.list.list
     }),
     [ADD_POST] : (state,action) => produce(state,(draft) => {
         

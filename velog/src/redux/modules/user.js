@@ -38,17 +38,19 @@ const signinDB = (id, pwd) => {
         // 받는 데이터 분류
         console.log(res)
         const niceName = res.data.nickname;
-        const jwtToken = res.data.token;
+        const jwtToken = res.headers.authorization.split(' ')[1]
         // 받는 데이터 저장
         localStorage.setItem("token", jwtToken);
         window.sessionStorage.setItem("id", id);
         window.sessionStorage.setItem("nickname", niceName);
 
         dispatch(setUser({ id: id, user_name: id }));
+        history.push('/')
       })
       .catch((err) => {
         console.log(err);
-        return;
+        alert('회원정보가 없습니다.')
+        return
       });
   };
 };
@@ -63,6 +65,7 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
         password: pwd,
         passwordConfirm: pwdCheck,
     };
+    console.log(data)
     apis
       .signUp(data)
       .then(() => {
@@ -70,6 +73,7 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
       })
       .catch((err) => {
         console.log(err)
+
       });
   };
 };

@@ -1,16 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch} from "react-redux";
 
+// 컴포넌트
 import {Text} from "../elements/ElementIndex";
+
+// JS
+import { actionCreators as likeActions} from '../redux/modules/like'
 
 const LikeBtn = (props) => {
 
-    const {like,states} = props
+    const dispatch = useDispatch()
+    const {like,states,id} = props
 
-    if(states === true) {
+    const addLike = () => {
+        dispatch(likeActions.addLikeDB(id))
+    }
+
+    const deleteLike = () => {
+        dispatch(likeActions.deleteLikeDB(id))
+    }
+
+    if(states === 'false') {
         return (
             <React.Fragment>
-                    <AddLikeBtnStyle>
+                    <AddLikeBtnStyle onClick={deleteLike}>
                     <svg width="20" height="20" viewBox="0 0 24 24">
                         <path
                         fill="#ff7575"
@@ -23,19 +37,26 @@ const LikeBtn = (props) => {
         );
     }
     
+    if(states === 'true') {
+        return (
+            <React.Fragment>
+                    <LikeBtnStyle onClick={addLike}>
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path
+                        fill="rgb(173, 181, 189)"
+                        d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
+                        ></path>
+                    </svg>
+                    <Text margin='0 0 0 10px' color="rgb(173, 181, 189)">{like}</Text>
+                    </LikeBtnStyle>
+            </React.Fragment>
+        );
+    }
     return (
         <React.Fragment>
-                <LikeBtnStyle>
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                    <path
-                    fill="rgb(173, 181, 189)"
-                    d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
-                    ></path>
-                </svg>
-                <Text margin='0 0 0 10px' color="rgb(173, 181, 189)">{like}</Text>
-                </LikeBtnStyle>
+
         </React.Fragment>
-    );
+    )
 };
 
 const LikeBtnStyle = styled.button`

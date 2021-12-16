@@ -21,6 +21,10 @@ const SignInModal = (props) => {
     const [pwdCheck, setPwdCheck] = useState('')
     const [userName, setUserName] = useState('')
     
+    // 중복 상태 관리
+    const [idDup,setIdDup] = useState(false)
+    const [namedDup,setNameDup] = useState(false)
+
     // 로그인창으로 이동
     const signInModal = () => {
         dispatch(modalActions.setInModal())
@@ -28,9 +32,9 @@ const SignInModal = (props) => {
 
     //아이디 체크 
     const idDuplicate = () => {
-        console.log('아이디체크')
+        const user_id ={username:id}
         apis
-        .idDuplicate(id)
+        .idDuplicate(user_id)
         .then((res) => {
             console.log(res)
         })
@@ -41,9 +45,9 @@ const SignInModal = (props) => {
 
     // 닉네임 체크
     const nickNameDuplicate = () => {
-        console.log('닉네임체크')
+        const user_name ={nickname:userName}
         apis
-        .nickNameDuplicate(userName)
+        .nickNameDuplicate(user_name)
         .then((res) => {
             console.log(res)
         })
@@ -58,7 +62,15 @@ const SignInModal = (props) => {
             alert('회원정보를 입력해주세요')
             return
         }
-        dispatch(userActions.signupDB(id,pwd,userName,pwdCheck))
+        // if(idDup === false) {
+        //     alert('아이디 중복체크를 해주세요.')
+        //     return
+        // }
+        // if(namedDup === false) {
+        //     alert('닉네임 중복체크를 해주세요.')
+        //     return
+        // }
+        dispatch(userActions.signupDB(id,userName,pwd,pwdCheck,))
         dispatch(modalActions.setInModal())
         console.log(id,pwd,userName,pwdCheck)
     }
