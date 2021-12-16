@@ -88,7 +88,7 @@ const EditPost = (props) => {
                 </Grid>
             </div>
             <div className="preview">
-                <h1>{title}</h1>
+                <h2>{title}</h2>
                 {preview?<Image shape='rectangle' src={preview?preview:null}></Image>:null}
                 <MarkdownRender>{content}</MarkdownRender>
             </div>

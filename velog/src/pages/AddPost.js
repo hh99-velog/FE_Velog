@@ -4,10 +4,11 @@ import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
+import { actionCreators as postActions } from "../redux/modules/main"
 import Swal from 'sweetalert2'
 
 //컴포넌트
-import {Grid,Button,Image} from "../elements/ElementIndex";
+import {Grid,Button} from "../elements/ElementIndex";
 
 const AddPost = (props) => {
     const dispatch = useDispatch()
@@ -65,11 +66,8 @@ const AddPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
-        Swal.fire(
-            'The Internet?',
-            'That thing is still around?',
-            'question'
-          )
+        
+        dispatch(postActions.addPostDB(addFormData))
         
     }
 
@@ -91,7 +89,7 @@ const AddPost = (props) => {
                 </Grid>
             </div>
             <div className="preview">
-                <h1>{title}</h1>
+                <h2>{title}</h2>
                 {preview?<img alt="예시이미지" src={preview?preview:null}></img>:null}
                 <MarkdownRender>{content}</MarkdownRender>
             </div>
