@@ -25,6 +25,8 @@ const Detail = (props) => {
 
     
 
+    
+
   return (
       <Grid  margin="0 auto" padding='40px 0'>
         <MaxWidth >
