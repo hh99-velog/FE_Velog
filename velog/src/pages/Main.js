@@ -23,8 +23,10 @@ const Main = (props) => {
     },[])
 
     // list 에 담기
-    const lists = useSelector((state) => state.main.list)
+    const lists = useSelector((state) => state.main.list
+                              
     const list = [...lists]
+
     
     // 최신순 정렬
     if(name[1] === 'recent') {
