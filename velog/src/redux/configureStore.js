@@ -6,10 +6,14 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import preview from "./modules/preview";
 import main from "./modules/main";
+import comment from "./modules/comment";
+import modal from "./modules/modal";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  modal:modal,
+  comment:comment,
   main:main,
   user: User,
   preview: preview,

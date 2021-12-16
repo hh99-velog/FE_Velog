@@ -20,6 +20,7 @@ const initialState ={
 const getPostListDB = () => {
     return function (dispatch, getState, { history }) {
   
+
         axios({
             method: "get",
             url: "https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733",
@@ -29,18 +30,18 @@ const getPostListDB = () => {
         }).catch((err) => {
             console.log(err)
         })
-    //   apis
-    //     .getPost()
-    //     .then((res) => {
-    //       // 받는 데이터 분류
-    //         console.log(res)
-    //         dispatch(getPostList({res}));
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //         window.alert(err.response.data.errorMessage);
-    //         return;
-    //     });
+
+        // apis
+        // .getPost()
+        // .then((res) => {
+        //   // 받는 데이터 분류
+        //     console.log(res)
+        //     dispatch(getPostList({res}));
+        // })
+        // .catch((err) => {
+        //     console.log(err);
+        //     return;
+        // });
     };
 };
 
@@ -52,7 +53,7 @@ const addPostDB = (addFormData) => {
 
         axios({
             method: "post",
-            url: "",
+            url: "http://3.37.127.5/api/boards",
             data: addFormData,
             headers: {
               "Content-Type": "multipart/form-data",

@@ -2,60 +2,76 @@ import React from 'react';
 import styled from "styled-components"
 
 const Button = (props) => {
-    const {flex,borderRadius,width,height,text, margin,children, _onClick, bg, color, border,padding,size,bold,cursor,hoverColor,hoverBg} = props
-    const styles = {flex,borderRadius,width,height,text, margin, bg, color, border,padding:padding,size:size,bold:bold,cursor:cursor,hoverColor,hoverBg}
-    return(
-        <>
-        <BtnBox  
-        {...styles}
-        onClick = {_onClick}>
-        {text?text:children}</BtnBox>
-        </>
 
+    const {
+        borderRadius,
+        width,
+        margin,
+        _onClick,
+        bg,
+        color,
+        border,
+        padding,
+        size,
+        bold,
+        hoverColor,
+        hoverBg
+    } = props;
+
+    const styles = {
+        borderRadius:borderRadius,
+        width:width,
+        margin:margin,
+        bg:bg,
+        color:color,
+        border:border,
+        padding:padding,
+        size:size,
+        bold:bold,
+        hoverColor:hoverColor,
+        hoverBg:hoverBg
+    };
+    
+    return(
+        <ButtonStyle {...styles} onClick={_onClick}>
+            {props.children}
+        </ButtonStyle>
     )
 }
 
 Button.defaultProps = {
-    _onClick :() => {},
-    margin: false,
-    text: false,
-    children: null,
-    width: null,
-    height: "",
-    bg : "#444444",
-    color: "#FFFFFF",
-    border: false,
-    borderRadius: false,
-    padding:0,
-    size:0,
-    bold:null,
-    cursor:null,
+    borderRadius:null,
+    width:'100%',
+    margin:null,
+    bg:'#fff',
+    color:'#777',
+    border:'1px solid #777',
+    padding:null,
+    size:'16px',
     hoverColor:null,
     hoverBg:null,
-    flex :false, //추가
+    _onClick: () => {},
 }
 
-const BtnBox = styled.button`
-font-weight: ${(props) => (props.bold ? "700" : "200")};
-box-sizing:border-box;
-font-size:${(props) => props.size};
-padding:${(props) => props.padding};
-width: ${(props) => props.width};
-${(props) =>(props.margin ?`margin:${props.margin};`:"")}
-${(props) =>(props.width?`width:${props.width};`:"") }
-${(props) =>(props.height?`height:${props.height};`:"") }
-${(props) =>(props.border?`border : ${props.border};`:`border : none;`) }
-background-color: ${(props) => props.bg};
-color: ${(props) => props.color};
-${(props) =>(props.borderRadius?`border-radius:${props.borderRadius};`:"") }
-cursor: ${(props) => props.cursor};
-transition: all 0.2s;
-&:hover{
-    color:${(props) => props.hoverColor};
-    background-color:${(props) => props.hoverBg};
+const ButtonStyle = styled.button`
+    box-sizing:border-box;
     transition: all 0.2s;
-}
-${(props) =>(props.flex ?`display:flex;align-items:center;  justify-content:space-evenly;`:"")} //추가
+    border-radius: ${(props) => props.borderRadius};
+    width: ${(props) => props.width};
+    margin: ${(props) => props.margin};
+    background-color: ${(props) => props.bg};
+    color: ${(props) => props.color};
+    border: ${(props) => props.border};
+    padding: ${(props) => props.padding};
+    font-size:${(props) => props.size};
+    font-weight: ${(props) => (props.bold ? "700" : "200")};
+    cursor: pointer;
+    // hover css
+    &:hover{
+        color:${(props) => props.hoverColor};
+        background-color:${(props) => props.hoverBg};
+        transition: all 0.2s;
+    }
 `
 
 export default Button

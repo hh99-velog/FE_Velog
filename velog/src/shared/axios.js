@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
+  baseURL: "http://3.37.127.5",
   // 헤더에 넣을 정보
   headers: {
     "content-type": "application/json;charset=UTF-8",
@@ -14,9 +14,9 @@ const instance = axios.create({
 export const apis = {
   // 로그인 API [정연재 : 완료]
   // data  = {username:id , password: pw}
-  signIn: (data) => instance.post("/api/user/login", data),
+  signIn: (data) => instance.post("/user/login", data),
   // data  = {username:id ,nickname:nickname, pwd: pw, pwdConfirm: pw}
-  signUp: (data) => instance.post("/api/user/signup", data),
+  signUp: (data) => instance.post("/user/signup", data),
   // username = {username:id}
   idDuplicate: (username) => instance.post("/user/id/duplicate", username),
   // nickname = {nickname:nickname}
@@ -44,7 +44,7 @@ export const apis = {
   // 코멘트 API
   // id:id
   getComment: (id) => instance.get(`/api/boards/detail/${id}/comment`),
-  deleteComment: (id, data) => instance.delete(`/api/boards/comment/${id}`, data),
+  deleteComment: (id) => instance.delete(`/api/boards/comment/${id}`),
   // data = {content: content, nickname:nickname}
   addComment: (id, data) => instance.post(`/api/boards/comment/${id}`, data),
   editComment: (id, data) => instance.put(`/api/boards/comment/${id}`, data),
