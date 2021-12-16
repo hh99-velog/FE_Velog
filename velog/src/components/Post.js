@@ -7,7 +7,12 @@ import {Grid,Text,Image} from "../elements/ElementIndex";
 //JS파일
 import { history } from "../redux/configureStore";
 
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '../redux/modules/user';
+
+
 const Post = (props) => {
+
 
     // Main page get API 요청 데이터
     const list = props.list
@@ -76,7 +81,7 @@ const Post = (props) => {
             </Grid>
         </PostWrap>
     )
-}
+    }
 
 const PostWrap = styled.div`
     border-radius: 5px;
