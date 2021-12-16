@@ -21,7 +21,7 @@ const Header = (props) => {
     const dispatch = useDispatch()
 
     // login 분기에 따라 header 설정
-    const is_login = useSelector((state) => state.user.is_login)
+    const is_login = localStorage.getItem("token");
 
     // modal state
     const inModal = useSelector((state) => state.modal.inModal)

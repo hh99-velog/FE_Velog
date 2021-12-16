@@ -4,41 +4,44 @@ import { apis } from "../../shared/axios";
 import axios from "axios";
 
 // 액션 
-const DELETE = "DELETE" // 삭제하기
+const GET_DETAIL = "GET_DETAIL" // 삭제하기
+const DELETE_DELETE = "DELETE" // 삭제하기
+const RESET = "RESET" // 삭제하기
 
 // 액션 크리에이터
 
-const deliteDetail = createAction(DELETE, (Detail_post) => ({ Detail_post }));
+const getDetail = createAction(GET_DETAIL, (Detail_post) => ({ Detail_post }));
+const deliteDetail = createAction(DELETE_DELETE, (Detail_post) => ({ Detail_post }));
+const resetDetail = createAction(RESET, () => ({ }));
 
 // 초기값 설정
 const initialState ={
     list:[]
 } 
 // 미들웨어 
-const postDelete = (id) => {
-    return function (dispatch, getState, { history }) {
-        console.log("ddddss")
 
-        axios({
-            method: "delete",
-            url: `https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733/${id}`,
-        }).then((res) => {
-            console.log(res)
-            return
-            
+// GET POST
+const getDetailDB = (id) => {
+    return function (dispatch, getState, { history }) {
+        apis
+        .getDetailPost(id)
+        .then((res) => {
+            dispatch(getDetail(res.data))
         }).catch((err) => {
             console.log(err)
         })
+    };
+};
 
-
-
-}
-}
-
-
-  export default handleActions({
-    [DELETE] : (state,action) => produce(state,(draft) => {
-
+export default handleActions({
+    [GET_DETAIL] : (state,action) => produce(state,(draft) => {
+        draft.list=action.payload.Detail_post
+    }),
+    [DELETE_DELETE] : (state,action) => produce(state,(draft) => {
+        draft.list=action.payload.Detail_post
+    }),
+    [RESET] : (state,action) => produce(state,(draft) => {
+        draft.list=[]
     })
 },initialState)
 
@@ -47,8 +50,10 @@ const postDelete = (id) => {
 
 
 const actionCreators = {
+    getDetail,
+    getDetailDB,
     deliteDetail,
-    postDelete,
+    resetDetail,
 
 
 }

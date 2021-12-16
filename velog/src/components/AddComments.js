@@ -16,7 +16,7 @@ const AddComments = (props) => {
 
     return(
        <AddCommentsStyle>
-            <Text margin='0 0 10px 0' color='#555' bold>4개의 댓글</Text>
+            <Text margin='0 0 10px 0' color='#555' bold>0개의 댓글</Text>
             <textarea onChange={(e)=>{setComment(e.target.value)}} placeholder="댓글을 입력해 주세요" />
             <Button _onClick={addComment}>댓글 작성</Button>
        </AddCommentsStyle>

@@ -19,7 +19,7 @@ const Post = (props) => {
 
     // 상세페이지 이동
     const goDetail = () => {
-        history.push(`/main/${list.board_id}`)
+        history.push(`/main/${list.id}`)
     }
 
     // 이미지가 없을경우

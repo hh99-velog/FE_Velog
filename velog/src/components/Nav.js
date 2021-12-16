@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 // JS파일
-import { apis } from '../shared/axios'
-import { history } from "../redux/configureStore";
-
+import { actionCreators as userActions} from '../redux/modules/user'
 
 const Nav = (props) => {
 
@@ -21,6 +19,7 @@ const Nav = (props) => {
     
     // SignOut
     const signOut = () => {
+        dispatch(userActions.logoutDB())
         setNav(false)
     }
 
@@ -41,7 +40,7 @@ const Nav = (props) => {
 const NavBar = styled.nav`
     position:absolute;
     width: auto;
-    top: 70px;
+    top: 50px;
     right:0;
     z-index:10;
     box-shadow:0px 0px 1px 2px #eee;

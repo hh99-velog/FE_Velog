@@ -9,12 +9,12 @@ const instance = axios.create({
   headers: {  
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
-    authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
 
 export const apis = {
-  // 로그인 API [정연재 : 완료]
+  // 로그인 API 완료
   // data  = {username:id , password: pw}
   signIn: (data) => instance.post("/user/login", data),
   // data  = {username:id ,nickname:nickname, pwd: pw, pwdConfirm: pw}
@@ -24,13 +24,13 @@ export const apis = {
   // nickname = {nickname:nickname}
   nickNameDuplicate: (nickname) => instance.post("/user/nickname/duplicate", nickname),
 
-  // Board API [정연재 : 완료]
+  // Board API 완료
   getPost: () => instance.get(`/api/boards`),
   // data = {title: title, content: content, nickname:nickname, multipartFile: 이미지}
   addPost: (data) => instance.post("/api/boards", data),
 
   //detail Board
-  // board_id:board_id
+  // board_id:board_id --> 완료
   getDetailPost: (board_id) => instance.get(`/api/boards/detail/${board_id}`),
   // board_id:board_id / data = {title: title, content: content, img:img}
   editDetailPost: (board_id, data) => instance.put(`/api/boards/detail/${board_id}`, data),
@@ -39,11 +39,11 @@ export const apis = {
 
   // 좋아요 API
   // board_id:board_id / 토큰은 헤더로 전송
-  getLike: (board_id) => instance.get(`/api/likes/${board_id}`),
-  addLike: (board_id) => instance.post(`/api/likes/${board_id}`), 
-  deleteLike: (board_id) => instance.delete(`/api/likes/${board_id}`),
+  getLike: (board_id) => instance.get(`/api/like/${board_id}`),
+  addLike: (board_id) => instance.post(`/api/like/${board_id}`), 
+  deleteLike: (board_id) => instance.delete(`/api/like/${board_id}`),
 
-  // 코멘트 API
+  // 코멘트 API 임시폐기
   // id:id
   getComment: (id) => instance.get(`/api/boards/detail/${id}/comment`),
   deleteComment: (id) => instance.delete(`/api/boards/comment/${id}`),
