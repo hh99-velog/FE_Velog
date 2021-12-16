@@ -68,7 +68,7 @@ const GridBox = styled.div`
   border:${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
   cursor: ${(props) => props.cursor};
-  opacity:1;
+  opacity:${(props) => props.opacity};
   position:${(props) => props.position};
 `
 

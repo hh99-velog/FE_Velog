@@ -23,15 +23,14 @@ const Main = (props) => {
     },[])
 
     // list 에 담기
-    const lists = useSelector((state) => state.main.list
-                              
-    const list = [...lists]
+    const lists = useSelector((state) => state.main.list)
+    const list = lists ? [...lists] : []
+    console.log(list)
 
-    
     // 최신순 정렬
     if(name[1] === 'recent') {
         list.sort((a,b) => {
-            return Number(b.board_id) - Number(a.board_id)
+            return b.id - a.id
         })
         return(
             <MainStyle>
@@ -44,9 +43,9 @@ const Main = (props) => {
         )
     }
     
-    // 좋아요 정렬
+    //좋아요 정렬
     list.sort((a,b) => {
-        return Number(b.like) - Number(a.like)
+        return b.like - a.like
     })
     return (
         <MainStyle>
