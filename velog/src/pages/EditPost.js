@@ -4,16 +4,26 @@ import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
-
+import { actionCreators as detailActions} from '../redux/modules/detail'
 //컴포넌트
 import {Grid,Button,Image} from "../elements/ElementIndex";
 
 const EditPost = (props) => {
     const dispatch = useDispatch()
+    const pathName = props.location.pathname
+    const boardId = pathName.split('/')  
+  
+    const list = useSelector((state) => state.detail.list)
+    const data = list ? {...list} :null
 
+    const titles = data.title
+    const contetns = data.content
+    const imgs = data.img
+    
     useEffect(() => {
-        // 주소로 받은 보드아이디 조회
-    },[])
+        dispatch(detailActions.getDetailDB(boardId[2]))
+        setInput({ title: titles, content: contetns })
+    },[titles,contetns,imgs])
 
     // 이미지 파일 url따기
     const filesInput = useRef()
@@ -68,6 +78,7 @@ const EditPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
+        dispatch(detailActions.editDetailDB(boardId[2],addFormData))
     }
 
     // 나가기 버튼
@@ -90,6 +101,7 @@ const EditPost = (props) => {
             <div className="preview">
                 <h2>{title}</h2>
                 {preview?<Image shape='rectangle' src={preview?preview:null}></Image>:null}
+                {preview?null:<img alt='수정전이미지' src={imgs}></img>}
                 <MarkdownRender>{content}</MarkdownRender>
             </div>
         </AddPostStyle>

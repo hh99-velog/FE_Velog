@@ -15,7 +15,6 @@ import LikeBtn from "../components/LikeBtn";
 
 const Detail = (props) => {
   const dispatch = useDispatch()
-  const [detail, setDetail] = useState([]);
    
   // board_id 구하기
   const pathName = props.location.pathname
@@ -34,6 +33,13 @@ const Detail = (props) => {
   const list = useSelector((state) => state.detail.list)
   const like = useSelector((state) => state.like.list)
 
+  const editBnt = () => {
+    history.push(`/editpost/${boardId[2]}`)
+  }
+
+  const deleteBtn = () => {
+    dispatch(detailActions.deleteDetailDB(boardId[2]))
+  }
 
   return (
       <DetailStyle margin="0 auto" padding='40px 0'>
@@ -46,8 +52,8 @@ const Detail = (props) => {
               <Text width='auto' margin='0 auto 0 10px' size='14px'>{list.createdAt}</Text>
             </Grid>
             <Grid width='auto' is_flex>
-              <Button bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
-              <Button bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
+              <Button _onClick={editBnt} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
+              <Button _onClick={deleteBtn} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
               <LikeBtn id={boardId[2]} states={like[1]} like={like[0]}></LikeBtn>
             </Grid>
           </Grid>

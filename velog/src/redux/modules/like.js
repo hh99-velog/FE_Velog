@@ -27,7 +27,6 @@ const getLikeDB = (id) => {
         apis
         .getLike(id)
         .then((res) => {
-            console.log(res.data)
             dispatch(getLike(res.data))
         }).catch((err) => {
             console.log(err)
