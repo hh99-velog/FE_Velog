@@ -7,7 +7,13 @@ import Image from '../elements/Image';
 
 import { history } from '../redux/configureStore'
 
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '../redux/modules/user';
+
+
 const Post = (props) => {
+
+
 
     const list = props.list
 
@@ -70,7 +76,7 @@ const Post = (props) => {
         </Grid>
     </PostWrap>
     )
-}
+    }
 
 const PostWrap = styled.div`
     width: calc((100% - 80px)/5);

@@ -22,7 +22,7 @@ const Main = (props) => {
     },[])
 
     const lists = useSelector((state) => state.main.list)
-    const list = lists.map(s =>s)
+    const list = lists.map(s => s)
     
     // 최신순 정렬
     if(name[1] === 'recent') {

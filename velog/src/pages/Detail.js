@@ -1,43 +1,69 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useSelector} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
-
+import detail, { actionCreators as detailActions} from '../redux/modules/detail'
+import MarkdownRender from "../components/Makrdown";
+import AddComments from "../components/AddComments";
+import axios from "axios";
 
 import Grid from "../elements/Grid";
 import Text from "../elements/Text";
 import Button from "../elements/Button";
 import Image from "../elements/Image";
 import Input from "../elements/Input"
-import MarkdownRender from "../components/Makrdown";
-import AddComments from "../components/AddComments";
+
 
 const Detail = (props) => {
-    let { board_id } = useParams(); // board_id라는 변수는 :board_id 자리에 있던 숫자를 의미
-    const post_list = useSelector((store) => store.main.list );
-
+  const dispatch = useDispatch()
+  const [detail, setDetail] = useState([]);
+   
+  // board_id 구하기
     const pathName = props.location.pathname
     const boardId = pathName.split('/')
-    console.log(boardId)
+    console.log(boardId[2])
+  
 
-    const list = post_list.find((data)=>{return data.board_id === boardId[2]}) // 데이터의 board_id와 :board_id 자리에 있던 숫자가 같을 때만 리턴
+    React.useEffect(() => {
+      getDetail()
+      },[])
 
-    
+ // 서버에서 상세페이지 데이터 가져오기     
+  const getDetail = () =>{
+  axios({
+    method: "get",
+    url: "https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733",
+}).then((res) => {
+    const data = res.data.result
+    console.log(data)
+    const list = data.filter(s => s.board_id === boardId[2]) 
+     const detail = list[0]
+     console.log(detail)
+     setDetail(detail)
 
-    
+}).catch((err) => {
+    console.log(err)
+})
+  }
+
+  const postDelete = () => {
+    dispatch(detailActions.postDelete(boardId[2]))
+  }
+
+   
 
   return (
       <Grid  margin="0 auto" padding='40px 0'>
         <MaxWidth >
           <Text margin="0px 0px 32px 0px" bold size="55px">
-            {list.title}
+            {detail.title}
           </Text>
           <Grid is_flex>
             <Grid is_flex>
               <Grid flex="flex">
-                <Text bold>by {`${list.nickname}`}</Text>
-                <Text size='14px' margin="5px 0px 0px 10px">{list.createdAt}</Text>
+                <Text bold>by {`${detail.nickname}`}</Text>
+                <Text size='14px' margin="5px 0px 0px 10px">{detail.createdAt}</Text>
               </Grid>
               <Button
                 width="100px"
@@ -52,15 +78,15 @@ const Detail = (props) => {
                     d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
                   ></path>
                 </svg>
-                <Text color="rgb(173, 181, 189)">{list.like}</Text>
+                <Text color="rgb(173, 181, 189)">{detail.like}</Text>
               </Button>
             </Grid>
           </Grid>
           <Grid margin = "0px auto" padding ="50px 0px 0px 0px">
-              {list.img?<img width='100%' alt='본문이미지' src={list.img} borderRadius= "0px"/>:null}
+              {detail.img?<img width='100%' alt='본문이미지' src={detail.img} borderRadius= "0px"/>:null}
           </Grid>
           <Grid  margin = "0 auto"width = "100%" padding ="20px 0px 0px 0px">
-            <MarkdownRender>{list.content}</MarkdownRender>
+            <MarkdownRender>{detail.content}</MarkdownRender>
             <Grid is_flex justifyContent = "flex-end" >
               <Grid is_flex  width = "200px" height ="30px" margin ="20px 0px" >
                   <Button margin = "0px 15px"bg = "white" 
@@ -74,7 +100,8 @@ const Detail = (props) => {
                   borderRadius = "30px" 
                   border ="1px solid black" 
                   width = "100%" 
-                  height ="100%">
+                  height ="100%"
+                  _onClick ={postDelete}>
                   <Text>삭제</Text>
                   </Button>
               </Grid>

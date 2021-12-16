@@ -6,12 +6,15 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import preview from "./modules/preview";
 import main from "./modules/main";
+import Detail from "./modules/detail";
+
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   main:main,
   user: User,
+  detail:Detail,
   preview: preview,
   router: connectRouter(history),
 });
