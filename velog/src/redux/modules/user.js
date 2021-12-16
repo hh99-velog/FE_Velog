@@ -36,6 +36,7 @@ const signinDB = (id, pwd) => {
       .signIn(data)
       .then((res) => {
         // 받는 데이터 분류
+        console.log(res)
         const niceName = res.data.nickname;
         const jwtToken = res.data.token;
         // 받는 데이터 저장
@@ -47,7 +48,6 @@ const signinDB = (id, pwd) => {
       })
       .catch((err) => {
         console.log(err);
-        window.alert(err.response.data.errorMessage);
         return;
       });
   };
@@ -69,7 +69,7 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
         window.alert("회원가입을 축하드립니다!");
       })
       .catch((err) => {
-        window.alert(err.response.data.errorMessage);
+        console.log(err)
       });
   };
 };

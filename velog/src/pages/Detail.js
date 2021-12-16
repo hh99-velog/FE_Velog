@@ -4,15 +4,15 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 import detail, { actionCreators as detailActions} from '../redux/modules/detail'
-import MarkdownRender from "../components/Makrdown";
-import AddComments from "../components/AddComments";
 import axios from "axios";
 
-import Grid from "../elements/Grid";
-import Text from "../elements/Text";
-import Button from "../elements/Button";
-import Image from "../elements/Image";
-import Input from "../elements/Input"
+// 컴포넌트
+import {Text,Grid,Button} from "../elements/ElementIndex";
+import MarkdownRender from "../components/Makrdown";
+import AddComments from "../components/AddComments";
+import CommentList from "../components/CommentList";
+import LikeBtn from "../components/LikeBtn";
+
 
 
 const Detail = (props) => {
@@ -28,6 +28,7 @@ const Detail = (props) => {
     React.useEffect(() => {
       getDetail()
       },[])
+
 
  // 서버에서 상세페이지 데이터 가져오기     
   const getDetail = () =>{
@@ -52,79 +53,52 @@ const Detail = (props) => {
   }
 
    
-
   return (
-      <Grid  margin="0 auto" padding='40px 0'>
-        <MaxWidth >
-          <Text margin="0px 0px 32px 0px" bold size="55px">
+      <DetailStyle margin="0 auto" padding='40px 0'>
+          <Text margin="0px 0px 32px 0px" bold size="45px">
             {detail.title}
           </Text>
           <Grid is_flex>
             <Grid is_flex>
-              <Grid flex="flex">
-                <Text bold>by {`${detail.nickname}`}</Text>
-                <Text size='14px' margin="5px 0px 0px 10px">{detail.createdAt}</Text>
-              </Grid>
-              <Button
-                width="100px"
-                height="35px"
-                flex
-                borderRadius="50px"
-                border="1px solid rgb(173, 181, 189)"
-                bg="white">
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                  <path
-                    fill="rgb(173, 181, 189)"
-                    d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
-                  ></path>
-                </svg>
-                <Text color="rgb(173, 181, 189)">{detail.like}</Text>
-              </Button>
+              <Text width='auto' bold>by {`${detail.nickname}`}</Text>
+              <Text width='auto' margin='0 auto 0 10px' size='14px'>{detail.createdAt}</Text>
+            </Grid>
+            <Grid width='auto' is_flex>
+              <Button bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
+              <Button bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
+              <LikeBtn states={true} like='2'></LikeBtn>
             </Grid>
           </Grid>
-          <Grid margin = "0px auto" padding ="50px 0px 0px 0px">
-              {detail.img?<img width='100%' alt='본문이미지' src={detail.img} borderRadius= "0px"/>:null}
-          </Grid>
-          <Grid  margin = "0 auto"width = "100%" padding ="20px 0px 0px 0px">
+          <Grid margin='40px 0'>
+            {detail.img?<img width='100%' alt='본문이미지' src={detail.img} borderRadius= "0px"/>:null}
             <MarkdownRender>{detail.content}</MarkdownRender>
-            <Grid is_flex justifyContent = "flex-end" >
-              <Grid is_flex  width = "200px" height ="30px" margin ="20px 0px" >
-                  <Button margin = "0px 15px"bg = "white" 
-                  borderRadius ="30px" 
-                  border ="1px solid black" 
-                  width = "100%" 
-                  height ="100%">
-                  <Text>수정</Text>
-                  </Button>
-                  <Button  bg = "white"
-                  borderRadius = "30px" 
-                  border ="1px solid black" 
-                  width = "100%" 
-                  height ="100%"
-                  _onClick ={postDelete}>
-                  <Text>삭제</Text>
-                  </Button>
-              </Grid>
-            </Grid>
+
           </Grid>
           <AddComments></AddComments>
-        </MaxWidth>
-      </Grid>
+          <CommentList></CommentList>
+      </DetailStyle>
     
   );
 };
 
 Detail.defaultProps = {
   title: "안녕",
-  content:
-    "너무 너무 어려워 ㅇ    ㅁㄴㄹㄴㅇㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㄹ      ㅏㅓㅏ  ㅓㅏㅓㅣ    ㄴㅇㅁㄹㄴㅇㄹㄴㅇㄴㅇㄹㅇㄹㄴㅇㄹㅓㅏ    ㅣ      ㅟㅏ",
+  content: "콘텐츠",
   createdAt: "2021년 12월 13일",
   nickname: "윤석준",
   like: "20",
 };
-const MaxWidth = styled.div`
-  width:800px;
+
+const DetailStyle = styled.div`
+  box-sizing:border-box;
+  max-width:800px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 0 100px 0;
+
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px 80px 20px;
+  }
 `
 
 

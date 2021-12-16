@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { history } from '../redux/configureStore'
 import Swal from 'sweetalert2'
 
-import Grid from "../elements/Grid"
+// 컴포넌트
 import Post from "../components/Post"
 
 // API
@@ -17,12 +17,16 @@ const Main = (props) => {
     const pathName = history.location.pathname;
     const name = pathName.split("/");
 
+    // get API 요청
     useEffect(() => {
         dispatch(postActions.getPostListDB())
     },[])
 
-    const lists = useSelector((state) => state.main.list)
-    const list = lists.map(s => s)
+    // list 에 담기
+    const lists = useSelector((state) => state.main.list
+                              
+    const list = [...lists]
+
     
     // 최신순 정렬
     if(name[1] === 'recent') {
@@ -33,7 +37,7 @@ const Main = (props) => {
             <MainStyle>
                 {list.map((list,index) => {
                     return(
-                        <Post list={list}/>
+                        <Post key={list.board_id} list={list}/>
                     )
                 })}
             </MainStyle>
@@ -48,7 +52,7 @@ const Main = (props) => {
         <MainStyle>
             {list.map((list,index) => {
                 return(
-                    <Post list={list}/>
+                    <Post key={list.board_id} list={list}/>
                 )
             })}
         </MainStyle>
@@ -56,15 +60,17 @@ const Main = (props) => {
 }
 
 const MainStyle = styled.div`
-    display: flex;
     width: 100%;
     max-width: 1730px;
     margin:20px auto 0 auto;
+    padding: 20px 0;
+    display: flex;
     flex-wrap:wrap;
     gap:20px;
     box-sizing:border-box;
+
     @media only screen and (max-width: 1730px) {
-        padding: 0 20px;
+        padding: 20px;
     }
   `
 
