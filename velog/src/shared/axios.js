@@ -2,9 +2,9 @@ import axios from "axios";
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: "",
+  baseURL: "https://run.mocky.io/v3/c86acbab-be47-4d90-a253-8bd1007ad733",
   // 헤더에 넣을 정보
-  headers: {
+  headers: {  
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json",
     authorization: `Bearer ${localStorage.getItem("token")}`,
