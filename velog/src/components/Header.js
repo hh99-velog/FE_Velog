@@ -63,9 +63,9 @@ const Header = (props) => {
         <HeaderStyle>
             <h1 onClick={home}>Velgo</h1>
             <Grid position='relative' is_flex width='auto'>
-                <div className="iconBox">
+                {/* <div className="iconBox">
                     <FiSearch margin='0 0 0 auto' size='20px'></FiSearch>
-                </div>
+                </div> */}
                 {/* 로그인 여부에 따라 분기 */}
                 {!is_login
                     ?<Button _onClick={signInModal} margin='0 0 0 10px' hoverBg='#555' hoverColor='#fff' borderRadius='30px' border='1px solid #555' padding='5px 16px' bg='#fff' color='#555' size='0.8rem' bold>로그인</Button>
