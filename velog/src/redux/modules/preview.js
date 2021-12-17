@@ -5,7 +5,6 @@ const SET_PREVIEW = "SET_PREVIEW"
 
 const setPreview = createAction(SET_PREVIEW,(preview) => ({preview}))   
 
-
 const initialState ={
     preview:null,
 }

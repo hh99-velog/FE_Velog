@@ -7,6 +7,8 @@ import {Grid,Text} from "../elements/ElementIndex";
 
 //JS파일
 import { history } from "../redux/configureStore";
+
+// react-icon 
 import { AiOutlineClockCircle,AiOutlineRise } from "react-icons/ai";
 
 const ManiBar = (props) => {
@@ -16,6 +18,7 @@ const ManiBar = (props) => {
     const [trendOp,setTrendOp] = useState(props.location.pathname === '/recent'? 0.5:1)
     const [recentOp,setRecentOp] = useState(props.location.pathname === '/recent'? 1:0.5)
 
+    // 트렌드로 이동
     const trend = () => {
         setLeft('0')
         setTrendOp(1)
@@ -23,6 +26,7 @@ const ManiBar = (props) => {
         history.push('/')
     }
 
+    // 최신으로 이동
     const recent = () => {
         setLeft('114px')
         setTrendOp(0.5)
@@ -30,6 +34,7 @@ const ManiBar = (props) => {
         history.push('/recent')
     }
 
+    // 메인화면에서만 보이게 설정
     if(props.location.pathname === '/' || props.location.pathname === '/recent') {
         return(
             <HeaderStyle>
@@ -53,6 +58,7 @@ const ManiBar = (props) => {
     )
 }
 
+// HeaderStyle component
 const HeaderStyle = styled.nav`
     width: 100%;
     max-width: 1730px;
@@ -64,6 +70,8 @@ const HeaderStyle = styled.nav`
         padding :0 20px;
     }
 `
+
+// UnderLine component
 const UnderLine = styled.div`
     width: 114px;
     left: ${(props) => props.left};;

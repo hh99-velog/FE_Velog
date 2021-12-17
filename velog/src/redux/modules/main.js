@@ -7,10 +7,8 @@ import axios from "axios";
 import { apis } from "../../shared/axios";
 
 const GET_POST = "GET_POST"
-const ADD_POST = "ADD_POST"
 
 const getPostList = createAction(GET_POST,(list) => ({list}))   
-const addPost = createAction(ADD_POST,(list) => ({list}))   
 
 
 const initialState ={
@@ -24,8 +22,6 @@ const getPostListDB = () => {
         apis
         .getPost()
         .then((res) => {
-          // 받는 데이터 분류
-
             const list = res.data.data
             dispatch(getPostList({list}));
         })
@@ -73,15 +69,12 @@ export default handleActions({
     [GET_POST] : (state,action) => produce(state,(draft) => {
         draft.list = action.payload.list.list
     }),
-    [ADD_POST] : (state,action) => produce(state,(draft) => {
-        
-    })
+
 },initialState)
 
 const actionCreators = {
     getPostList,
     getPostListDB,
-    addPost,
     addPostDB
 
 }

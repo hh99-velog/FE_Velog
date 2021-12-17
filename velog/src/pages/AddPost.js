@@ -1,11 +1,15 @@
-import React,{useState,useRef,useEffect} from "react";
+import React,{useState,useRef} from "react";
 import styled from "styled-components";
-import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
+
+// 컴포넌트
+import MarkdownRender from "../components/Makrdown";
+
+// JS
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
 import { actionCreators as postActions } from "../redux/modules/main"
-import Swal from 'sweetalert2'
 
 //컴포넌트
 import {Grid,Button} from "../elements/ElementIndex";
@@ -16,7 +20,11 @@ const AddPost = (props) => {
     // 이미지 파일 url따기
     const filesInput = useRef()
     
-    // 이미지 프리뷰
+    // 전송용 데이터 관리
+    const [input, setInput] = useState({ title: '', content: '' });
+    const [imageFile, setImageFile] = useState(null);
+
+    // 이미지 프리뷰 저장
     const selectFile = (e) => {
         const reader = new FileReader();
         const file = filesInput.current.files[0];
@@ -24,15 +32,15 @@ const AddPost = (props) => {
         reader.onloadend = () =>{
             dispatch(imageActions.setPreview(reader.result))
         }
+        
+        // AddPost용 img 저장
         if(file) {
             setImageFile(file)
         }
     }
-    const preview = useSelector(state => state.preview.preview)
 
-    // 전송용 데이터 관리
-    const [input, setInput] = useState({ title: '', content: '' });
-    const [imageFile, setImageFile] = useState(null);
+    // 프리뷰 img src 가져오기
+    const preview = useSelector(state => state.preview.preview)
 
     // state input 분해구조할당
     const { title, content } = input;
@@ -47,7 +55,7 @@ const AddPost = (props) => {
           });
     }
 
-    // add post
+    // Add Post Api 요청
     const addPost = async () => {
         if(title ==='' || content === '') {
             Swal.fire({
@@ -65,6 +73,7 @@ const AddPost = (props) => {
               })
             return
         }
+
         // 새로운 폼데이터 생성
         let addFormData = new FormData();
         // 이미지와 함께 보낼 콘텐츠와 타이틀
@@ -72,13 +81,15 @@ const AddPost = (props) => {
             title: title,
             content: content,
         };
+
         // 폼데이터에 이미지와 콘텐츠 추가
         addFormData.append("multipartFile", imageFile);
         addFormData.append(
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
-        // AddPost 미들웨어
+
+        // AddPost 요청
         await dispatch(postActions.addPostDB(addFormData))
     }
 
@@ -101,6 +112,7 @@ const AddPost = (props) => {
             </div>
             <div className="preview">
                 <h2>{title}</h2>
+                {/* 프리뷰가 있다면 이미지를 보여주고 없다면 null */}
                 {preview?<img alt="예시이미지" src={preview?preview:null}></img>:null}
                 <MarkdownRender>{content}</MarkdownRender>
             </div>
@@ -108,6 +120,7 @@ const AddPost = (props) => {
     )
 }
 
+// AddPostStyle component
 const AddPostStyle = styled.div`
     display:flex;
     position: relative;

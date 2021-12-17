@@ -3,17 +3,12 @@ import styled from "styled-components"
 
 //컴포넌트
 import {Grid,Text,Image} from "../elements/ElementIndex";
+import MarkdownRender from './Makrdown';
 
 //JS파일
 import { history } from "../redux/configureStore";
 
-import { useDispatch } from 'react-redux';
-import { actionCreators } from '../redux/modules/user';
-import MarkdownRender from './Makrdown';
-
-
 const Post = (props) => {
-
 
     // Main page get API 요청 데이터
     const list = props.list
@@ -86,8 +81,9 @@ const Post = (props) => {
             </Grid>
         </PostWrap>
     )
-    }
+}
 
+// PostWrap component
 const PostWrap = styled.div`
     border-radius: 5px;
     background: #fff;
@@ -141,6 +137,7 @@ const PostWrap = styled.div`
         color:#444; 
         text-decoration:none;
     }
+    // markdown 글자크기 고정
     .contents > h1,h2,h3,h4,h5,h6,p {
         font-size:1rem;
         font-weight:500;

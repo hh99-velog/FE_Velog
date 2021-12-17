@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 // 컴포넌트
 import {Text} from "../elements/ElementIndex";
@@ -11,16 +11,21 @@ import { actionCreators as likeActions} from '../redux/modules/like'
 const LikeBtn = (props) => {
 
     const dispatch = useDispatch()
+
+    // Like props data
     const {like,states,id} = props
 
+    // Like +1
     const addLike = () => {
         dispatch(likeActions.addLikeDB(id))
     }
 
+    // Like -1
     const deleteLike = () => {
         dispatch(likeActions.deleteLikeDB(id))
     }
 
+    // 좋아요가 눌린경우
     if(states === 'false') {
         return (
             <React.Fragment>
@@ -36,7 +41,8 @@ const LikeBtn = (props) => {
             </React.Fragment>
         );
     }
-    
+
+    // 좋아요가 눌리지 않은 경우
     if(states === 'true') {
         return (
             <React.Fragment>
@@ -53,12 +59,11 @@ const LikeBtn = (props) => {
         );
     }
     return (
-        <React.Fragment>
-
-        </React.Fragment>
+        <React.Fragment></React.Fragment>
     )
 };
 
+// LikeBtnStyle component
 const LikeBtnStyle = styled.button`
     width: 100px;
     height: 35px;
@@ -75,7 +80,7 @@ const LikeBtnStyle = styled.button`
         transition: all 0.2s;
     }
 `
-
+// AddLikeBtnStyle component
 const AddLikeBtnStyle = styled.button`
     width: 100px;
     height: 35px;

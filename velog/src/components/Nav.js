@@ -8,11 +8,14 @@ import { actionCreators as userActions} from '../redux/modules/user'
 const Nav = (props) => {
 
     const dispatch = useDispatch()
+
+    // props.nav (false or true)
     const navState = props.nav
-    
+
     // NavBar 설정
     const [nav,setNav] = useState(false)
     
+    // useEffect로 navState가 바뀔때마다 렌더링
     useEffect(() => {
         setNav(navState)
     },[navState])
@@ -37,6 +40,7 @@ const Nav = (props) => {
     )
 }
 
+// NavBar component
 const NavBar = styled.nav`
     position:absolute;
     width: auto;
@@ -45,6 +49,8 @@ const NavBar = styled.nav`
     z-index:10;
     box-shadow:0px 0px 1px 2px #eee;
 `
+
+// NavList component
 const NavList = styled.div`
     width:150px;
     background: #fff;

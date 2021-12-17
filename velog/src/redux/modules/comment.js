@@ -6,7 +6,7 @@ import { apis } from "../../shared/axios";
 
 const GET_COMMENT = "GET_COMMENT"
 const ADD_COMMENT = "ADD_COMMENT"
-const DELETE_COMMENT = "ADD_COMMENT"
+const DELETE_COMMENT = "DELETE_COMMENT"
 
 const getComments = createAction(GET_COMMENT,(comments) => ({comments}))   
 const addComments = createAction(ADD_COMMENT,(comments) => ({comments}))   
@@ -37,21 +37,20 @@ const addCommentsDB = (id,data) => {
         apis
         .addComment(id,data)
         .then((res) => {
-            console.log(res)
-        }).catch((err) => {
+            dispatch(addComments(res))
+        }).catch((err) => { 
             console.log(err)
         })
     };
 };
 
-// ADD POST
+// DELETE POST
 const deleteCommentsDB = (id) => {
     return function (dispatch, getState, { history }) {
-        console.log(id)
         apis
         .deleteComment(id)
         .then((res) => {
-            console.log(res)
+            dispatch(deleteComments(res.data))
         }).catch((err) => {
             console.log(err)
         })
@@ -65,10 +64,12 @@ export default handleActions({
         draft.list = action.payload.comments
     }),
     [ADD_COMMENT] : (state,action) => produce(state,(draft) => {
-        draft.list.push(action.payload.list)
+        draft.list.push(action.payload.comments.data)
     }),
     [DELETE_COMMENT] : (state,action) => produce(state,(draft) => {
-        draft.list.push(action.payload.list)
+        const list = [...state.list]
+        const deleteList = list.filter(x=> x.id !== action.payload.comments.id)
+        draft.list = deleteList
     }),
 },initialState)
 

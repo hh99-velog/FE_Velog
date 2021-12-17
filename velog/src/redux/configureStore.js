@@ -11,9 +11,10 @@ import comment from "./modules/comment";
 import modal from "./modules/modal";
 import like from "./modules/like";
 
-
+// history
 export const history = createBrowserHistory();
 
+// RootReducer
 const rootReducer = combineReducers({
   like:like,
   modal:modal,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   router: connectRouter(history),
 });
 
+// middlewears
 const middlewares = [thunk.withExtraArgument({ history: history })];
 const enhancer = applyMiddleware(...middlewares);
 

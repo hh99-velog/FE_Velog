@@ -5,11 +5,9 @@ const SET_IN_MODAL = "SET_IN_MODAL"
 const SET_UPMODAL = "SET_UP_MODAL"
 const EXIT_MODAL = "EXIT_MODAL"
 
-
 const setInModal = createAction(SET_IN_MODAL,() => ({}))   
 const setUpModal = createAction(SET_UPMODAL,() => ({}))   
 const ExitModal = createAction(EXIT_MODAL,() => ({}))   
-
 
 const initialState ={
     inModal:false,
