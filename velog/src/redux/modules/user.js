@@ -24,7 +24,7 @@ const initialStat = {
 
 // 로그인
 const signinDB = (id, pwd) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
 
     // 보내는 정보
     const data = {
@@ -32,26 +32,29 @@ const signinDB = (id, pwd) => {
         password:pwd,
     };
 
-    apis
+    await apis
       .signIn(data)
       .then((res) => {
         // 받는 데이터 분류
         console.log(res)
-        const niceName = res.data.nickname;
+        
         const jwtToken = res.headers.authorization.split(' ')[1]
+        const id = res.headers.nickname
         // 받는 데이터 저장
         localStorage.setItem("token", jwtToken);
         window.sessionStorage.setItem("id", id);
-        window.sessionStorage.setItem("nickname", niceName);
-
         dispatch(setUser({ id: id, user_name: id }));
-        history.push('/')
       })
       .catch((err) => {
         console.log(err);
-        alert('회원정보가 없습니다.')
+        Swal.fire({
+          text: '회원정보가 없습니다.',
+          color: '#777',
+          confirmButtonColor: '#ff7777'
+        })
         return
       });
+      window.location.href='/'
   };
 };
 
@@ -69,7 +72,7 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
     apis
       .signUp(data)
       .then(() => {
-        window.alert("회원가입을 축하드립니다!");
+        
       })
       .catch((err) => {
         console.log(err)
@@ -80,9 +83,13 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
 
 // 로그아웃
 const logoutDB = () => {
-  return function (dispatch, getState, { history }) {
-    dispatch(logOut());
-    alert("로그아웃 되었습니다.");
+  return async function (dispatch, getState, { history }) {
+    await dispatch(logOut());
+    Swal.fire({
+      text: '로그아웃 되었습니다.',
+      color: '#777',
+      confirmButtonColor: '#ff7777'
+    })
     history.push("/");
   };
 };

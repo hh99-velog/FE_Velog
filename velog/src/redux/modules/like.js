@@ -12,8 +12,8 @@ const DELETE_LIKE = "DELETE_LIKE"
 // 액션 크리에이터
 
 const getLike = createAction(GET_LIKE, (Detail_post) => ({ Detail_post }));
-const addLike = createAction(ADD_LIKE, (Detail_post) => ({ Detail_post }));
-const deleteLike = createAction(DELETE_LIKE, (Detail_post) => ({ Detail_post }));
+const addLike = createAction(ADD_LIKE, () => ({ }));
+const deleteLike = createAction(DELETE_LIKE, () => ({ }));
 
 // 초기값 설정
 const initialState ={
@@ -39,7 +39,7 @@ const addLikeDB = (id) => {
         apis
         .addLike(id)
         .then((res) => {
-            console.log(res.data)
+            dispatch(addLike())
         }).catch((err) => {
             console.log(err)
         })
@@ -51,7 +51,7 @@ const deleteLikeDB = (id) => {
         apis
         .deleteLike(id)
         .then((res) => {
-            console.log(res.data)
+            dispatch(deleteLike())
         }).catch((err) => {
             console.log(err)
         })
@@ -61,6 +61,14 @@ const deleteLikeDB = (id) => {
 export default handleActions({
     [GET_LIKE] : (state,action) => produce(state,(draft) => {
         draft.list=action.payload.Detail_post
+    }),
+    [ADD_LIKE] : (state,action) => produce(state,(draft) => {
+        const like = [...state.list]
+        draft.list=[Number(like[0])+1,'false']
+    }),
+    [DELETE_LIKE] : (state,action) => produce(state,(draft) => {
+        const like = [...state.list]
+        draft.list=[Number(like[0])-1,'true']
     }),
 },initialState)
 

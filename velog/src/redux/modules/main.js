@@ -1,5 +1,6 @@
 import { createAction,handleActions } from "redux-actions"
 import { produce } from "immer"
+import Swal from 'sweetalert2'
 
 // axios파일
 import axios from "axios";
@@ -24,6 +25,7 @@ const getPostListDB = () => {
         .getPost()
         .then((res) => {
           // 받는 데이터 분류
+
             const list = res.data.data
             dispatch(getPostList({list}));
         })
@@ -36,7 +38,7 @@ const getPostListDB = () => {
 
 // ADD POST
 const addPostDB = (addFormData) => {
-    return function (dispatch, getState, { history }) {
+    return async function (dispatch, getState, { history }) {
   
         const accessToken = window.localStorage.getItem('token')
 
@@ -50,8 +52,14 @@ const addPostDB = (addFormData) => {
             },
         })
         .then((res) => {
-            console.log(res)
-            alert('게시글 업로드 완료')
+             Swal.fire({
+                icon: 'success',
+                text: '새 글이 등록되었습니다',
+                color: '#777',
+                confirmButtonColor: '#12b886'
+              }).then(() => {
+                history.push('/')
+              })
         })
         .catch((err) => {
             console.log(err);

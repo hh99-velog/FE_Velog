@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/axios";
+import Swal from 'sweetalert2'
 import axios from "axios";
 
 // 액션 
@@ -51,7 +52,14 @@ const editDetailDB = (id,addFormData) => {
             },
         })
         .then((res) => {
-            alert('게시글 수정 완료')
+            Swal.fire({
+                icon: 'success',
+                text: '글이 수정되었습니다',
+                color: '#777',
+                confirmButtonColor: '#12b886'
+              }).then(() => {
+                history.push('/')
+              })
         })
         .catch((err) => {
             console.log(err);
@@ -88,10 +96,6 @@ export default handleActions({
     })
 },initialState)
 
-        
-
-
-
 const actionCreators = {
     getDetail,
     getDetailDB,
@@ -100,8 +104,6 @@ const actionCreators = {
     editDetailDB,
     editDetail,
     deleteDetailDB
-
-
 }
 
 export {actionCreators}

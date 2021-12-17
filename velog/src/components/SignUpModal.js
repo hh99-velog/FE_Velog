@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 //컴포넌트
 import {Grid,Text,Button,Input} from "../elements/ElementIndex";
@@ -36,7 +37,22 @@ const SignInModal = (props) => {
         apis
         .idDuplicate(user_id)
         .then((res) => {
-            console.log(res)
+            console.log(res.data)
+            if(!res.data) {
+                setIdDup(true)
+                Swal.fire({
+                    text: '사용가능한 ID입니다.',
+                    color: '#777',
+                    confirmButtonColor: '#12b886'
+                  })
+            } else {
+                setIdDup(false)
+                Swal.fire({
+                    text: '중복된 ID입니다.',
+                    color: '#777',
+                    confirmButtonColor: '#ff7777'
+                  })
+            }
         })
         .catch((err) => {
             console.log(err)
@@ -49,7 +65,21 @@ const SignInModal = (props) => {
         apis
         .nickNameDuplicate(user_name)
         .then((res) => {
-            console.log(res)
+            if(!res.data) {
+                setNameDup(true)
+                Swal.fire({
+                    text: '사용가능한 닉네임 입니다.',
+                    color: '#777',
+                    confirmButtonColor: '#12b886'
+                  })
+            } else {
+                setNameDup(false)
+                Swal.fire({
+                    text: '중복된 닉네임 입니다.',
+                    color: '#777',
+                    confirmButtonColor: '#ff7777'
+                  })
+            }
         })
         .catch((err) => {
             console.log(err)
@@ -57,22 +87,39 @@ const SignInModal = (props) => {
     }
 
     // 회원가입
-    const signUp = () => {
+    const signUp = async () => {
         if(id==='' || pwd ==='' || pwdCheck==='' || userName==='') {
-            alert('회원정보를 입력해주세요')
+            Swal.fire({
+                text: '회원정보를 모두 채워주세요',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
             return
         }
-        // if(idDup === false) {
-        //     alert('아이디 중복체크를 해주세요.')
-        //     return
-        // }
-        // if(namedDup === false) {
-        //     alert('닉네임 중복체크를 해주세요.')
-        //     return
-        // }
+        if(idDup === false) {
+            Swal.fire({
+                text: '아이디 중복확인을 해주세요',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
+            return
+        }
+        if(namedDup === false) {
+            Swal.fire({
+                text: '닉네임 중복확인을 해주세요',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
+            return
+        }
         dispatch(userActions.signupDB(id,userName,pwd,pwdCheck,))
+        await Swal.fire({
+            icon: 'success',
+            text: '회원가입이 되었습니다',
+            color: '#777',
+            confirmButtonColor: '#12b886'
+          })
         dispatch(modalActions.setInModal())
-        console.log(id,pwd,userName,pwdCheck)
     }
 
     const exit = () => {

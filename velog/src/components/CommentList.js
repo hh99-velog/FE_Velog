@@ -17,7 +17,7 @@ const CommentList = (props) => {
                 <Text margin='0 0 10px 0' color='#555' bold>아이디</Text>
                 <Button onClick={deleteComment}>삭제</Button>
            </Grid>
-           <Text margin='0 0 10px 0' color='#777' size='14px'>4개의 댓글</Text>
+           <Text margin='0 0 10px 0' color='#777' size='14px'>댓글이 달립니다.</Text>
        </CommentsStyle> 
     )
 }
