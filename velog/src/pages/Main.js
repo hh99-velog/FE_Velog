@@ -11,6 +11,7 @@ import Post from "../components/Post"
 import { actionCreators as postActions} from '../redux/modules/main'
 
 const Main = (props) => {
+
     const dispatch = useDispatch()
 
     // 패스값 가져오기

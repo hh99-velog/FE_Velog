@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 
 import { useDispatch } from 'react-redux';
 import { actionCreators } from '../redux/modules/user';
+import MarkdownRender from './Makrdown';
 
 
 const Post = (props) => {
@@ -31,7 +32,9 @@ const Post = (props) => {
                         <Text margin = "10px 0px" bold size = "26px">{list.title}</Text>
                     </Grid>
                     <Grid _onClick ={goDetail} cursor='pointer' margin = "1rem 0">
-                        <p className='contents'>{list.content}</p>
+                        <p className='contents'>
+                            <MarkdownRender>{list.content}</MarkdownRender>
+                        </p>
                     </Grid>  
                     <Grid>
                         <Text size = "1rem" color = "rgb(134, 142, 150)">{list.createdAt}</Text>
@@ -64,7 +67,9 @@ const Post = (props) => {
                     <p className='textPreview'>{list.title}</p>
                 </Grid>
                 <Grid _onClick ={goDetail} cursor='pointer' margin = "1rem 0">
-                    <p className='contents'>{list.content}</p>
+                    <p className='contents'>
+                        <MarkdownRender>{list.content}</MarkdownRender>
+                    </p>
                 </Grid>  
                 <Grid>
                     <Text size = "1rem" color = "rgb(134, 142, 150)">{list.createdAt}</Text>
@@ -135,6 +140,10 @@ const PostWrap = styled.div`
         height:2.4rem; 
         color:#444; 
         text-decoration:none;
+    }
+    .contents > h1,h2,h3,h4,h5,h6,p {
+        font-size:1rem;
+        font-weight:500;
     }
 `
 

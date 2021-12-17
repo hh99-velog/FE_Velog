@@ -13,7 +13,6 @@ import Header from "../components/Header";
 import Main from "../pages/Main"
 import Detail from "../pages/Detail"
 import ManiBar from "../components/ManiBar";
-import NotFound from "../pages/Notfound";
 import AddPost from "../pages/AddPost";
 import EditPost from "../pages/EditPost";
 

@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector} from "react-redux";
 import { actionCreators as detailActions} from '../redux/modules/detail'
 import { actionCreators as likeActions} from '../redux/modules/like'
-import axios from "axios";
+import Swal from 'sweetalert2'
 
 // 컴포넌트
 import {Text,Grid,Button} from "../elements/ElementIndex";
@@ -15,12 +15,12 @@ import LikeBtn from "../components/LikeBtn";
 
 const Detail = (props) => {
   const dispatch = useDispatch()
-   
   // board_id 구하기
   const pathName = props.location.pathname
   const boardId = pathName.split('/')  
 
-  const result = useSelector((state) => state.like.list)
+  const token = window.localStorage.getItem('token')
+  const nickName = window.sessionStorage.getItem('id')
 
   React.useEffect(() => {
     dispatch(detailActions.getDetailDB(boardId[2]))
@@ -28,7 +28,7 @@ const Detail = (props) => {
     return () => {
       dispatch(detailActions.resetDetail())
     }
-  },[result[1]])
+  },[])
 
   const list = useSelector((state) => state.detail.list)
   const like = useSelector((state) => state.like.list)
@@ -37,8 +37,26 @@ const Detail = (props) => {
     history.push(`/editpost/${boardId[2]}`)
   }
 
-  const deleteBtn = () => {
-    dispatch(detailActions.deleteDetailDB(boardId[2]))
+  const deleteBtn = async () => {
+    Swal.fire({
+      title: '되돌릴수 없어요!',
+      text: "정말 삭제하시겠습니까?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(detailActions.deleteDetailDB(boardId[2]))
+        Swal.fire(
+          '삭제되었습니다',
+          '더 좋은 글을 올려주세요 :)',
+          'success'
+        )
+        history.push('/')
+      }
+    })
   }
 
   return (
@@ -51,11 +69,17 @@ const Detail = (props) => {
               <Text width='auto' bold>by {`${list.nickname}`}</Text>
               <Text width='auto' margin='0 auto 0 10px' size='14px'>{list.createdAt}</Text>
             </Grid>
-            <Grid width='auto' is_flex>
-              <Button _onClick={editBnt} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
-              <Button _onClick={deleteBtn} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
+            {token
+            ?<Grid width='auto' is_flex>
+              {nickName===list.nickname
+                ?<>
+                <Button _onClick={editBnt} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
+                <Button _onClick={deleteBtn} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
+                </>
+              :null}
               <LikeBtn id={boardId[2]} states={like[1]} like={like[0]}></LikeBtn>
             </Grid>
+            :null}
           </Grid>
           <Grid margin='40px 0'>
             {list.img?<img width='100%' alt='본문이미지' src={list.img} borderRadius= "0px"/>:null}

@@ -48,9 +48,21 @@ const AddPost = (props) => {
     }
 
     // add post
-    const addPost = () => {
+    const addPost = async () => {
         if(title ==='' || content === '') {
-            alert('텍스트를 입력하세요')
+            Swal.fire({
+                text: '텍스트를 입력해주세요',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
+            return
+        }
+        if(imageFile == null) {
+            Swal.fire({
+                text: '이미지를 등록해주세요',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
             return
         }
         // 새로운 폼데이터 생성
@@ -66,10 +78,8 @@ const AddPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
-        console.log(data)
-        console.log(imageFile)
-        dispatch(postActions.addPostDB(addFormData))
-        
+        // AddPost 미들웨어
+        await dispatch(postActions.addPostDB(addFormData))
     }
 
     // 나가기 버튼
@@ -85,8 +95,8 @@ const AddPost = (props) => {
                 <input ref={filesInput} onChange={selectFile} className="file" type="file"></input>
                 <textarea name='content' value={content} style={{outline:'none'}} placeholder="텍스트를 입력해주세요..." className="text" onChange={textChange}></textarea>
                 <Grid width='100%' height='95px' is_flex>
-                    <Button _onClick={exit} hoverBg='#eee' color='#777' bg='#fff' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>나가기</b></Button>
-                    <Button _onClick={addPost} borderRadius='3px' hoverBg='rgb(27, 231, 170)' bg='rgb(18, 184, 134)' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>출간하기</b></Button>
+                    <Button _onClick={exit} hoverBg='#eee' border='none' color='#777' bg='#fff' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>나가기</b></Button>
+                    <Button _onClick={addPost} border='none' color='#fff' borderRadius='3px' hoverBg='rgb(27, 231, 170)' bg='rgb(18, 184, 134)' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>출간하기</b></Button>
                 </Grid>
             </div>
             <div className="preview">
