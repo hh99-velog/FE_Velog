@@ -1,4 +1,4 @@
-# BE_Velog_Team11
+# FE_Velog_Team11
 
 # 👀 Velog 클론코딩
 <img src="https://images.velog.io/images/bellpro/post/6fb24c2e-6af3-478b-84fa-ebb08e00ab5d/image.png"  width="100%">
