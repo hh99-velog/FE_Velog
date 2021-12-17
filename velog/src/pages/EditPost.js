@@ -10,7 +10,12 @@ import MarkdownRender from "../components/Makrdown";
 // JS
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
-import { actionCreators as detailActions} from '../redux/modules/detail'
+
+import { actionCreators as detailActions} from '../redux/modules/Detail'
+import Swal from 'sweetalert2'
+//컴포넌트
+import {Grid,Button,Image} from "../elements/ElementIndex";
+
 
 const EditPost = (props) => {
     const dispatch = useDispatch()
