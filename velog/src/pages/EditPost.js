@@ -4,7 +4,7 @@ import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
-import { actionCreators as detailActions} from '../redux/modules/detail'
+import { actionCreators as detailActions} from '../redux/modules/Detail'
 import Swal from 'sweetalert2'
 //컴포넌트
 import {Grid,Button,Image} from "../elements/ElementIndex";

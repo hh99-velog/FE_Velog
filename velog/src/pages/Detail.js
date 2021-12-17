@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector} from "react-redux";
-import { actionCreators as detailActions} from '../redux/modules/detail'
+import { actionCreators as detailActions} from '../redux/modules/Detail'
 import { actionCreators as likeActions} from '../redux/modules/like'
 import { actionCreators as commentActions} from '../redux/modules/comment'
 import Swal from 'sweetalert2'
