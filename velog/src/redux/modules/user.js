@@ -39,10 +39,13 @@ const signinDB = (id, pwd) => {
         console.log(res)
         
         const jwtToken = res.headers.authorization.split(' ')[1]
-        const id = res.headers.nickname
+        const str = res.headers.nickname
+
+        const nickname = decodeURIComponent(escape(window.atob(str)));
+
         // 받는 데이터 저장
         localStorage.setItem("token", jwtToken);
-        window.sessionStorage.setItem("id", id);
+        window.sessionStorage.setItem("id", nickname);
         dispatch(setUser({ id: id, user_name: id }));
       })
       .catch((err) => {
@@ -68,15 +71,13 @@ const signupDB = (id, userName, pwd, pwdCheck) => {
         password: pwd,
         passwordConfirm: pwdCheck,
     };
-    console.log(data)
+
     apis
       .signUp(data)
       .then(() => {
-        
       })
       .catch((err) => {
         console.log(err)
-
       });
   };
 };

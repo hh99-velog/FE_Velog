@@ -4,6 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector} from "react-redux";
 import { actionCreators as detailActions} from '../redux/modules/detail'
 import { actionCreators as likeActions} from '../redux/modules/like'
+import { actionCreators as commentActions} from '../redux/modules/comment'
 import Swal from 'sweetalert2'
 
 // 컴포넌트
@@ -25,6 +26,7 @@ const Detail = (props) => {
   React.useEffect(() => {
     dispatch(detailActions.getDetailDB(boardId[2]))
     dispatch(likeActions.getLikeDB(boardId[2]))
+    dispatch(commentActions.getCommentsDB(boardId[2]))
     return () => {
       dispatch(detailActions.resetDetail())
     }
@@ -32,6 +34,9 @@ const Detail = (props) => {
 
   const list = useSelector((state) => state.detail.list)
   const like = useSelector((state) => state.like.list)
+  const comment = useSelector((state) => state.comment.list)
+
+  const commentList = comment ? [...comment] : []
 
   const editBnt = () => {
     history.push(`/editpost/${boardId[2]}`)
@@ -85,8 +90,12 @@ const Detail = (props) => {
             {list.img?<img width='100%' alt='본문이미지' src={list.img} borderRadius= "0px"/>:null}
             <MarkdownRender>{list.content}</MarkdownRender>
           </Grid>
-          <AddComments></AddComments>
-          <CommentList></CommentList>
+          <AddComments board_id={boardId[2]}></AddComments>
+          {commentList.map((cd,idx) => {
+            return(
+              <CommentList board_id={boardId[2]} cd={cd}></CommentList>
+            )
+          })}
       </DetailStyle>
     
   );

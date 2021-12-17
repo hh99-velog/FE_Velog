@@ -112,6 +112,22 @@ const SignInModal = (props) => {
               })
             return
         }
+        if(!emailCheck(id)) {
+            Swal.fire({
+                text: '잘못된 비밀번호 입니다',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
+            return
+        }
+        if(!(pwd===pwdCheck)) {
+            Swal.fire({
+                text: '비밀번호가 같지 않습니다.',
+                color: '#777',
+                confirmButtonColor: '#ff7777'
+              })
+            return
+        }
         dispatch(userActions.signupDB(id,userName,pwd,pwdCheck,))
         await Swal.fire({
             icon: 'success',
