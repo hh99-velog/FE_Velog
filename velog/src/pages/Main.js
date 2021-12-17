@@ -1,19 +1,15 @@
 import React,{useEffect} from 'react'
 import styled from "styled-components"
 import { useDispatch,useSelector } from 'react-redux'
-import { history } from '../redux/configureStore'
-import Swal from 'sweetalert2'
 
 // 컴포넌트
 import Post from "../components/Post"
 
 // API
+import { history } from '../redux/configureStore'
 import { actionCreators as postActions} from '../redux/modules/main'
 
 const Main = (props) => {
-
-    var str2 = decodeURIComponent(escape(window.atob('7KCV7Jew7J6s')));
-    console.log(str2);
 
     const dispatch = useDispatch()
 
@@ -21,9 +17,14 @@ const Main = (props) => {
     const pathName = history.location.pathname;
     const name = pathName.split("/");
 
+    // get API
+    const getPost = () => {
+        dispatch(postActions.getPostListDB())
+    }
+
     // get API 요청
     useEffect(() => {
-        dispatch(postActions.getPostListDB())
+        getPost()
     },[])
 
     // list 에 담기
@@ -32,6 +33,7 @@ const Main = (props) => {
 
     // 최신순 정렬
     if(name[1] === 'recent') {
+        // post id 순서
         list.sort((a,b) => {
             return b.id - a.id
         })

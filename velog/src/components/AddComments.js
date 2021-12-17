@@ -1,6 +1,6 @@
-import React,{useState} from "react";
+import React,{useState,useRef} from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
 
 //컴포넌트
 import {Button,Text} from "../elements/ElementIndex";
@@ -11,7 +11,10 @@ import { actionCreators as commentActions} from '../redux/modules/comment'
 const AddComments = (props) => {
 
     const dispatch = useDispatch()
-    const nickName = window.sessionStorage.getItem('id')
+    const textRef = useRef()
+    // 닉네임 받아오기
+    const nickName = window.sessionStorage.getItem('nickname')
+
     // comment state 관리
     const [comment,setComment] = useState()
 
@@ -21,14 +24,19 @@ const AddComments = (props) => {
             content:comment,
             nickname:nickName
         }
-        console.log(data)
         dispatch(commentActions.addCommentsDB(props.board_id,data))
+        setComment('')
     }
 
     return(
        <AddCommentsStyle>
-            <Text margin='0 0 10px 0' color='#555' bold>0개의 댓글</Text>
-            <textarea onChange={(e)=>{setComment(e.target.value)}} placeholder="댓글을 입력해 주세요" />
+            <Text margin='0 0 10px 0' color='#555' bold>{props.cmtCount}개의 댓글</Text>
+            <textarea 
+                ref={textRef}
+                value={comment}
+                onChange={(e)=>{setComment(e.target.value)}} 
+                placeholder="댓글을 입력해 주세요" 
+            />
             <Button _onClick={addComment}>댓글 작성</Button>
        </AddCommentsStyle>
     )

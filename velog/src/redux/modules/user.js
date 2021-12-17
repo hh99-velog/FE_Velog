@@ -45,7 +45,7 @@ const signinDB = (id, pwd) => {
 
         // 받는 데이터 저장
         localStorage.setItem("token", jwtToken);
-        window.sessionStorage.setItem("id", nickname);
+        window.sessionStorage.setItem("nickname", nickname);
         dispatch(setUser({ id: id, user_name: id }));
       })
       .catch((err) => {
