@@ -17,7 +17,6 @@ const Post = (props) => {
     const goDetail = () => {
         history.push(`/main/${list.id}`)
     }
-
     
     // Default
     return(
