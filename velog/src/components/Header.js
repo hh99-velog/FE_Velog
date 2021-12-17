@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { useSelector,useDispatch } from "react-redux";
 
 //컴포넌트
-import {Grid,Button} from "../elements/ElementIndex";
+import {Grid,Button,Text} from "../elements/ElementIndex";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
 import Nav from "./Nav";
@@ -12,7 +12,6 @@ import Nav from "./Nav";
 // JS파일
 import { history } from "../redux/configureStore";
 import { AiFillCaretDown } from "react-icons/ai";
-import { FiSearch } from "react-icons/fi";
 import { actionCreators as modalActions} from '../redux/modules/modal'
 
 
@@ -21,7 +20,9 @@ const Header = (props) => {
     const dispatch = useDispatch()
 
     // login 분기에 따라 header 설정
-    const is_login = localStorage.getItem("token");
+    const is_login = window.sessionStorage.getItem("id");
+    const _id = sessionStorage.getItem("id")
+    const id = _id? _id.split('@')[0] : null
 
     // modal state
     const inModal = useSelector((state) => state.modal.inModal)
@@ -63,19 +64,15 @@ const Header = (props) => {
         <HeaderStyle>
             <h1 onClick={home}>Velgo</h1>
             <Grid position='relative' is_flex width='auto'>
-                {/* <div className="iconBox">
-                    <FiSearch margin='0 0 0 auto' size='20px'></FiSearch>
-                </div> */}
-                {/* 로그인 여부에 따라 분기 */}
                 {!is_login
                     ?<Button _onClick={signInModal} margin='0 0 0 10px' hoverBg='#555' hoverColor='#fff' borderRadius='30px' border='1px solid #555' padding='5px 16px' bg='#fff' color='#555' size='0.8rem' bold>로그인</Button>
                     :null
                 }
                 {is_login
                     ?<Grid is_flex margin='0 0 0 10px'>
-                        <Button _onClick={addPost} hoverBg='#555' hoverColor='#fff' borderRadius='30px' padding='5px 16px' color='#555' size='0.8rem' bold>새 글 작성</Button>
+                        <Button _onClick={addPost} width='auto' hoverBg='#555' hoverColor='#fff' borderRadius='30px' padding='5px 16px' color='#555' size='0.8rem' bold>새 글 작성</Button>
                         <Grid _onClick={navBtn} cursor='pointer' width='auto' margin='0 0 0 10px' is_flex>
-                            <Profile alt ="프로필 이미지" src="https://reacteek-1.s3.ap-northeast-2.amazonaws.com/ch-1.png"></Profile>
+                            <Text size='14px' bold>{id}님</Text>
                             <AiFillCaretDown color='#777' size='12px'></AiFillCaretDown>
                         </Grid>
                     </Grid>
@@ -106,9 +103,6 @@ const HeaderStyle = styled.header`
         font-size:26px;
         color:#777;
         cursor:pointer;
-    }
-    .iconBox {
-        width: auto;
     }
     @media only screen and (max-width: 1730px) {
         padding :0 20px
