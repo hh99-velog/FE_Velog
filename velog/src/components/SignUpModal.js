@@ -157,26 +157,111 @@ const SignInModal = (props) => {
                     <Text margin='10px 0' size='22px' bold>회원가입</Text>
                     <Text margin='10px 0' size='14px'>어서오세요 반갑습니다!</Text>
                     <Grid position='relative'>
-                        <Input  _onChange={(e)=>{setId(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='이메일 형식으로 입력해주세요'></Input>
+                        <Input  
+                            _onChange={(e)=>{setId(e.target.value)}} 
+                            margin='10px 0' 
+                            width='100%' 
+                            padding="15px" 
+                            placeholder='이메일 형식으로 입력해주세요'
+                        ></Input>
                         <CheckBtn>
-                            <Button _onClick={idDuplicate} border='none' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
+                            <Button _
+                                onClick={idDuplicate} 
+                                border='none' 
+                                padding='5p 20px' 
+                                bg='#fff' 
+                                color='rgb(18, 184, 134)' 
+                                size='0.75rem' 
+                                bold 
+                            >Check</Button>
                         </CheckBtn>
                     </Grid>
-                    {id===''?null:<Text margin='-11px 0 0 0' size='0.55rem' color={emailCheck(id)?'rgb(18, 184, 134)':'red'}>{emailCheck(id)?'알맞은 이메일 형식입니다':'잘못된 이메일 형식입니다'}</Text>}
+                    {id===''
+                    ?null
+                    :<Text 
+                        margin='-11px 0 0 0' 
+                        size='0.55rem' 
+                        color={emailCheck(id)?'rgb(18, 184, 134)':'red'}
+                    >{emailCheck(id)?'알맞은 이메일 형식입니다':'잘못된 이메일 형식입니다'}
+                    </Text>}
                     <Grid position='relative'> 
-                        <Input _onChange={(e)=>{setUserName(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='닉네임을 입력해주세요'></Input>
+                        <Input 
+                            _onChange={(e)=>{setUserName(e.target.value)}} 
+                            margin='10px 0' 
+                            width='100%' 
+                            padding="15px" 
+                            placeholder='닉네임을 입력해주세요'
+                        ></Input>
                         <CheckBtn>
-                            <Button _onClick={nickNameDuplicate} border='none' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='0.75rem' bold >Check</Button>
+                            <Button 
+                                _onClick={nickNameDuplicate} 
+                                border='none' 
+                                padding='5p 20px' 
+                                bg='#fff' 
+                                color='rgb(18, 184, 134)' 
+                                size='0.75rem' 
+                                bold 
+                            >Check</Button>
                         </CheckBtn>
                     </Grid>
-                    <Input _onChange={(e)=>{setPwd(e.target.value)}} type='password' margin='10px 0' width='100%' padding="15px" placeholder='6 ~ 10자 영문, 숫자 조합'></Input>
-                    {pwd===''?null:<Text margin='-11px 0 0 0' size='0.55rem' color={checkPassword(pwd)?'rgb(18, 184, 134)':'red'}>{checkPassword(pwd)?'알맞은 비밀번호입니다':'잘못된 비밀번호입니다'}</Text>}
-                    <Input _onChange={(e)=>{setPwdCheck(e.target.value)}} type='password' margin='10px 0' width='100%' padding="15px" placeholder='패스워드를 다시 입력해주세요'></Input>
-                    {pwdCheck===''?null:<Text margin='-11px 0 0 0' size='0.55rem' color={pwd===pwdCheck?'rgb(18, 184, 134)':'red'}>{pwd===pwdCheck?'비밀번호가 같습니다':'비밀번호가 다릅니다'}</Text>}
-                    <Button margin='10px 0' _onClick={signUp} width='100%' cursor='pointer' borderRadius='3px' border='1px solid rgb(18, 184, 134)' padding='10px 20px' bg='rgb(18, 184, 134)' color='#fff' size='16px' bold>회원가입</Button>
+                    <Input 
+                        _onChange={(e)=>{setPwd(e.target.value)}} 
+                        type='password' 
+                        margin='10px 0' 
+                        width='100%' 
+                        padding="15px" 
+                        placeholder='6 ~ 10자 영문, 숫자 조합'
+                    ></Input>
+                    {pwd===''
+                    ?null
+                    :<Text 
+                        margin='-11px 0 0 0' 
+                        size='0.55rem' 
+                        color={checkPassword(pwd)?'rgb(18, 184, 134)':'red'}
+                    >{checkPassword(pwd)?'알맞은 비밀번호입니다':'잘못된 비밀번호입니다'}
+                    </Text>}
+                    <Input 
+                        _onChange={(e)=>{setPwdCheck(e.target.value)}} 
+                        type='password' 
+                        margin='10px 0' 
+                        width='100%' 
+                        padding="15px" 
+                        placeholder='패스워드를 다시 입력해주세요'
+                    ></Input>
+                    {pwdCheck===''
+                    ?null
+                    :<Text 
+                        margin='-11px 0 0 0' 
+                        size='0.55rem' 
+                        color={pwd===pwdCheck?'rgb(18, 184, 134)':'red'}
+                    >{pwd===pwdCheck?'비밀번호가 같습니다':'비밀번호가 다릅니다'}
+                    </Text>}
+                    <Button 
+                        margin='10px 0' 
+                        _onClick={signUp} 
+                        width='100%' 
+                        cursor='pointer' 
+                        borderRadius='3px' 
+                        border='1px solid rgb(18, 184, 134)' 
+                        padding='10px 20px' 
+                        bg='rgb(18, 184, 134)' 
+                        color='#fff' 
+                        size='16px' 
+                        bold
+                    >회원가입</Button>
                     <Grid margin='10px 0' is_flex>
                         <Text size='0.9rem' bold margin='0 10px 0 auto' color='#777'>계정이 있으신가요?</Text>
-                        <Button _onClick={signInModal} width='auto' border='none' cursor='pointer' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='1rem' bold >로그인</Button>
+                        <Button 
+                            _onClick={signInModal} 
+                            width='auto' 
+                            border='none' 
+                            cursor='pointer' 
+                            padding='5p 20px' 
+                            bg='#fff' 
+                            color='rgb(18, 184, 134)' 
+                            size='1rem' 
+                            bold 
+                        >로그인</Button>
                     </Grid>
                 </InputBox>
                 <ExitBtn onClick={exit}>X</ExitBtn>

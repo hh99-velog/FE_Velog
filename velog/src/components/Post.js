@@ -17,8 +17,7 @@ const Post = (props) => {
     const goDetail = () => {
         history.push(`/main/${list.id}`)
     }
-    
-    // Default
+
     return(
         <PostWrap>
             <Grid _onClick ={goDetail} cursor='pointer'>

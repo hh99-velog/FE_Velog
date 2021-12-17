@@ -124,12 +124,54 @@ const EditPost = (props) => {
     return(
         <AddPostStyle>
             <div className="add">
-                <input name='title' value={title} onChange={textChange} style={{outline:'none'}} placeholder="제목을 적어주세요..." className="title"></input>
-                <input ref={filesInput} onChange={selectFile} className="file" type="file"></input>
-                <textarea name='content' value={content} style={{outline:'none'}} placeholder="텍스트를 입력해주세요..." className="text" onChange={textChange}></textarea>
+                <input 
+                    name='title' 
+                    value={title} 
+                    onChange={textChange} 
+                    style={{outline:'none'}} 
+                    placeholder="제목을 적어주세요..." 
+                    className="title"
+                ></input>
+                <input 
+                    ref={filesInput} 
+                    onChange={selectFile} 
+                    className="file" 
+                    type="file"
+                ></input>
+                <textarea 
+                    name='content' 
+                    value={content} 
+                    style={{outline:'none'}} 
+                    placeholder="텍스트를 입력해주세요..." 
+                    className="text" 
+                    onChange={textChange}
+                ></textarea>
                 <Grid width='100%' height='95px' is_flex>
-                    <Button _onClick={exit} hoverBg='#eee' color='#777' border='none' bg='#fff' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>나가기</b></Button>
-                    <Button _onClick={editPost} borderRadius='3px' border='none' color='#fff' hoverBg='rgb(27, 231, 170)' bg='rgb(18, 184, 134)' cursor='pointer' margin='0 10px' width='20%' padding='8px 0' size='16px'><b>수정하기</b></Button>
+                    <Button 
+                        _onClick={exit} 
+                        hoverBg='#eee' 
+                        color='#777' 
+                        border='none' 
+                        bg='#fff' 
+                        cursor='pointer' 
+                        margin='0 10px' 
+                        width='20%' 
+                        padding='8px 0' 
+                        size='16px'
+                    ><b>나가기</b></Button>
+                    <Button
+                        _onClick={editPost} 
+                        borderRadius='3px' 
+                        border='none' 
+                        color='#fff' 
+                        hoverBg='rgb(27, 231, 170)' 
+                        bg='rgb(18, 184, 134)' 
+                        cursor='pointer' 
+                        margin='0 10px' 
+                        width='20%' 
+                        padding='8px 0' 
+                        size='16px'
+                    ><b>수정하기</b></Button>
                 </Grid>
             </div>
             <div className="preview">
