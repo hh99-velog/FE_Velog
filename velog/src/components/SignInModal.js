@@ -47,12 +47,44 @@ const SignInModal = (props) => {
                 <InputBox>
                     <Text margin='10px 0' size='22px' bold>로그인</Text>
                     <Text margin='10px 0' size='14px'>어서오세요 반갑습니다!</Text>
-                    <Input _onChange={(e)=>{setId(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='아이디를 입력해주세요'></Input>
-                    <Input _onChange={(e)=>{setPwd(e.target.value)}} margin='10px 0' width='100%' padding="15px" placeholder='패스워드를 입력해주세요' type='password'></Input>
-                    <Button _onClick={signIn} margin='10px 0'  borderRadius='3px' border='1px solid rgb(18, 184, 134)' padding='10px 20px' bg='rgb(18, 184, 134)' color='#fff' size='16px' bold>로그인</Button>
+                    <Input 
+                        _onChange={(e)=>{setId(e.target.value)}}
+                        margin='10px 0' 
+                        width='100%' 
+                        padding="15px" 
+                        placeholder='아이디를 입력해주세요'
+                    ></Input>
+                    <Input 
+                        _onChange={(e)=>{setPwd(e.target.value)}}
+                        margin='10px 0' 
+                        width='100%' 
+                        padding="15px" 
+                        placeholder='패스워드를 입력해주세요' 
+                        type='password'
+                    ></Input>
+                    <Button 
+                        _onClick={signIn} 
+                        margin='10px 0'  
+                        borderRadius='3px'
+                        border='1px solid rgb(18, 184, 134)' 
+                        padding='10px 20px' 
+                        bg='rgb(18, 184, 134)' 
+                        color='#fff' 
+                        size='16px' 
+                        bold
+                    >로그인</Button>
                     <Grid margin='10px 0' is_flex>
                         <Text size='0.9rem' bold margin='0 10px 0 auto' color='#777'>회원이 아니신가요?</Text>
-                        <Button _onClick={signUpModal} width='auto' border='none' padding='5p 20px' bg='#fff' color='rgb(18, 184, 134)' size='1rem' bold >회원가입</Button>
+                        <Button 
+                            _onClick={signUpModal} 
+                            width='auto' 
+                            border='none' 
+                            padding='5p 20px' 
+                            bg='#fff' 
+                            color='rgb(18, 184, 134)' 
+                            size='1rem' 
+                            bold 
+                        >회원가입</Button>
                     </Grid>
                 </InputBox>
                 <ExitBtn onClick={exit}>X</ExitBtn>

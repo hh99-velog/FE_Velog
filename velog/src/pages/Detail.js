@@ -99,8 +99,23 @@ const Detail = (props) => {
                 <Grid width='auto' is_flex>
                     {nickName===list.nickname?
                     <>
-                    <Button _onClick={editBnt} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000'>수정</Button>
-                    <Button _onClick={deleteBtn} bg='transparent' size='14px' width='50px' border='none' hoverColor='#000' margin='0 10px 0 0'>삭제</Button>
+                    <Button 
+                        _onClick={editBnt} 
+                        bg='transparent' 
+                        size='14px' 
+                        width='50px' 
+                        border='none' 
+                        hoverColor='#000'
+                    >수정</Button>
+                    <Button 
+                        _onClick={deleteBtn} 
+                        bg='transparent' 
+                        size='14px' 
+                        width='50px' 
+                        border='none' 
+                        hoverColor='#000' 
+                        margin='0 10px 0 0'
+                    >삭제</Button>
                     </>
                     :null}
                     <LikeBtn id={boardId[2]} states={like[1]} like={like[0]}></LikeBtn>
