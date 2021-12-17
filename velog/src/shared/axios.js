@@ -45,9 +45,8 @@ export const apis = {
 
   // 코멘트 API 임시폐기
   // id:id
-  getComment: (id) => instance.get(`/api/boards/detail/${id}/comment`),
-  deleteComment: (id) => instance.delete(`/api/boards/comment/${id}`),
+  getComment: (id) => instance.get(`/api/board/detail/${id}/comment`),
+  deleteComment: (id) => instance.delete(`/api/board/detail/${id}`),
   // data = {content: content, nickname:nickname}
-  addComment: (id, data) => instance.post(`/api/boards/comment/${id}`, data),
-  editComment: (id, data) => instance.put(`/api/boards/comment/${id}`, data),
+  addComment: (id, data) => instance.post(`/api/board/comment/${id}`, data),
 };

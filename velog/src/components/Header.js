@@ -21,8 +21,7 @@ const Header = (props) => {
 
     // login 분기에 따라 header 설정
     const is_login = window.sessionStorage.getItem("id");
-    const _id = sessionStorage.getItem("id")
-    const id = _id? _id.split('@')[0] : null
+    const id = sessionStorage.getItem("id")
 
     // modal state
     const inModal = useSelector((state) => state.modal.inModal)

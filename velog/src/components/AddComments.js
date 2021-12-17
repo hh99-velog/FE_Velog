@@ -1,17 +1,28 @@
 import React,{useState} from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector} from "react-redux";
 
 //컴포넌트
 import {Button,Text} from "../elements/ElementIndex";
 
+//JS
+import { actionCreators as commentActions} from '../redux/modules/comment'
+
 const AddComments = (props) => {
 
+    const dispatch = useDispatch()
+    const nickName = window.sessionStorage.getItem('id')
     // comment state 관리
     const [comment,setComment] = useState()
 
     // add comment API 요청
     const addComment = () => {
-        console.log(comment)
+        const data = {
+            content:comment,
+            nickname:nickName
+        }
+        console.log(data)
+        dispatch(commentActions.addCommentsDB(props.board_id,data))
     }
 
     return(
