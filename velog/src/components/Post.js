@@ -18,6 +18,7 @@ const Post = (props) => {
         history.push(`/main/${list.id}`)
     }
 
+    
     // Default
     return(
         <PostWrap>
