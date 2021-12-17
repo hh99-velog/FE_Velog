@@ -12,6 +12,9 @@ import { actionCreators as postActions} from '../redux/modules/main'
 
 const Main = (props) => {
 
+    var str2 = decodeURIComponent(escape(window.atob('7KCV7Jew7J6s')));
+    console.log(str2);
+
     const dispatch = useDispatch()
 
     // 패스값 가져오기

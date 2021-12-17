@@ -21,9 +21,10 @@ const initialState ={
 const getCommentsDB = (id) => {
     return function (dispatch, getState, { history }) {
         apis
-        .getComment(id)
+        .getDetailPost(id)
         .then((res) => {
-            console.log(res)
+            const list = res.data.commentResponseDtoList
+            dispatch(getComments(list))
         }).catch((err) => {
             console.log(err)
         })
@@ -46,6 +47,7 @@ const addCommentsDB = (id,data) => {
 // ADD POST
 const deleteCommentsDB = (id) => {
     return function (dispatch, getState, { history }) {
+        console.log(id)
         apis
         .deleteComment(id)
         .then((res) => {
@@ -60,7 +62,7 @@ const deleteCommentsDB = (id) => {
 
 export default handleActions({
     [GET_COMMENT] : (state,action) => produce(state,(draft) => {
-        draft.list = action.payload.list
+        draft.list = action.payload.comments
     }),
     [ADD_COMMENT] : (state,action) => produce(state,(draft) => {
         draft.list.push(action.payload.list)
