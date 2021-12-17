@@ -1,4 +1,4 @@
-# BE_Velog_Team11
+# FE_Velog_Team11
 
 # 👀 Velog 클론코딩
 <img src="https://images.velog.io/images/bellpro/post/6fb24c2e-6af3-478b-84fa-ebb08e00ab5d/image.png"  width="100%">
@@ -6,14 +6,14 @@
 <br />   
   
 - [\[사이트 바로가기\]](http://wordpad.s3-website.ap-northeast-2.amazonaws.com/)  
-- [\[시연영상 구경하기\]]()  
+- [\[시연영상 구경하기\]](https://www.youtube.com/watch?v=AyNuf-7WjU8)  
 
 <br />
 
 # 👥 멤버
 - Back-end: [김종욱](https://github.com/bellpro), [김우진](https://github.com/woojin126), [서유리](https://github.com/uriseozz)
 - Front-end: [정연재](https://github.com/jeongyeon9254), [윤석준](https://github.com/seokjun2021)
-- [\[Front-End Github\]](https://github.com/hh99-velog/FE_Velog)
+- [\[Back-End Github\]](https://github.com/hh99-velog/BE_Velog_Team11)
 <br />
 
 # 🗓 프로젝트 기간
