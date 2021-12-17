@@ -13,7 +13,7 @@
 # 👥 멤버
 - Back-end: [김종욱](https://github.com/bellpro), [김우진](https://github.com/woojin126), [서유리](https://github.com/uriseozz)
 - Front-end: [정연재](https://github.com/jeongyeon9254), [윤석준](https://github.com/seokjun2021)
-- [\[Front-End Github\]](https://github.com/hh99-velog/BE_Velog_Team11)
+- [\[Back-End Github\]](https://github.com/hh99-velog/BE_Velog_Team11)
 <br />
 
 # 🗓 프로젝트 기간
