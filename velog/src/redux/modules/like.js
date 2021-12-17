@@ -1,7 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+
+// axios
 import { apis } from "../../shared/axios";
-import axios from "axios";
 
 // 액션 
 const GET_LIKE = "GET_LIKE" 
@@ -12,8 +13,8 @@ const DELETE_LIKE = "DELETE_LIKE"
 // 액션 크리에이터
 
 const getLike = createAction(GET_LIKE, (Detail_post) => ({ Detail_post }));
-const addLike = createAction(ADD_LIKE, () => ({ }));
-const deleteLike = createAction(DELETE_LIKE, () => ({ }));
+const addLike = createAction(ADD_LIKE, () => ({}));
+const deleteLike = createAction(DELETE_LIKE, () => ({}));
 
 // 초기값 설정
 const initialState ={

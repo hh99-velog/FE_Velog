@@ -1,21 +1,23 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { apis } from "../../shared/axios";
 import Swal from 'sweetalert2'
+
+// axios
 import axios from "axios";
+import { apis } from "../../shared/axios";
 
 // 액션 
-const GET_DETAIL = "GET_DETAIL" // 삭제하기
-const EDIT_DETAIL = "EDIT_DETAIL" // 삭제하기
-const DELETE_DELETE = "DELETE" // 삭제하기
-const RESET = "RESET" // 삭제하기
+const GET_DETAIL = "GET_DETAIL" 
+const EDIT_DETAIL = "EDIT_DETAIL" 
+const DELETE_DELETE = "DELETE" 
+const RESET = "RESET"
 
 // 액션 크리에이터
 
 const getDetail = createAction(GET_DETAIL, (Detail_post) => ({ Detail_post }));
 const editDetail = createAction(EDIT_DETAIL, (Detail_post) => ({ Detail_post }));
 const deleteDetail = createAction(DELETE_DELETE, (Detail_post) => ({ Detail_post }));
-const resetDetail = createAction(RESET, () => ({ }));
+const resetDetail = createAction(RESET, () => ({}));
 
 // 초기값 설정
 const initialState ={
@@ -40,8 +42,6 @@ const getDetailDB = (id) => {
 const editDetailDB = (id,addFormData) => {
     return function (dispatch, getState, { history }) {
         const accessToken = window.localStorage.getItem('token')
-        console.log('에딧')
-        console.log(id,addFormData)
         axios({
             method: "put",
             url: `http://3.37.127.5/api/boards/detail/${id}`,
@@ -74,7 +74,7 @@ const deleteDetailDB = (id) => {
         apis
         .deleteDetailPost(id)
         .then((res) => {
-            console.log(res)
+            console.log('삭제성공')
         }).catch((err) => {
             console.log(err)
         })

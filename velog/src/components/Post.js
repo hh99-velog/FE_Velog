@@ -3,17 +3,12 @@ import styled from "styled-components"
 
 //컴포넌트
 import {Grid,Text,Image} from "../elements/ElementIndex";
+import MarkdownRender from './Makrdown';
 
 //JS파일
 import { history } from "../redux/configureStore";
 
-import { useDispatch } from 'react-redux';
-import { actionCreators } from '../redux/modules/user';
-import MarkdownRender from './Makrdown';
-
-
 const Post = (props) => {
-
 
     // Main page get API 요청 데이터
     const list = props.list
@@ -22,40 +17,7 @@ const Post = (props) => {
     const goDetail = () => {
         history.push(`/main/${list.id}`)
     }
-
-    // 이미지가 없을경우
-    if(list.img === '') {
-        return(
-            <PostWrap>
-                <Grid padding ="1rem">
-                    <Grid _onClick ={goDetail} cursor='pointer'>
-                        <Text margin = "10px 0px" bold size = "26px">{list.title}</Text>
-                    </Grid>
-                    <Grid _onClick ={goDetail} cursor='pointer' margin = "1rem 0">
-                        <p className='contents'>
-                            <MarkdownRender>{list.content}</MarkdownRender>
-                        </p>
-                    </Grid>  
-                    <Grid>
-                        <Text size = "1rem" color = "rgb(134, 142, 150)">{list.createdAt}</Text>
-                    </Grid>
-                </Grid>
-                <Grid _onClick ={goDetail} cursor='pointer'>
-                    <Image src={list.img}/>
-                </Grid>
-                <Grid is_flex padding = "0.625rem 1rem"  borderTop ="1px solid rgb(248, 249, 250)">
-                    <Text cursor='pointer' size = "1rem" bold >{`By ${list.nickname}`}</Text>
-                    <Grid is_flex width  >
-                        <svg  width="14" height="14" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
-                        </svg>
-                        <Text margin = "0px 10px 0px 5px"  bold>{list.like}</Text>
-                    </Grid>
-                </Grid>
-            </PostWrap>
-        )
-    }
-
+    
     // Default
     return(
         <PostWrap>
@@ -86,8 +48,9 @@ const Post = (props) => {
             </Grid>
         </PostWrap>
     )
-    }
+}
 
+// PostWrap component
 const PostWrap = styled.div`
     border-radius: 5px;
     background: #fff;
@@ -141,6 +104,7 @@ const PostWrap = styled.div`
         color:#444; 
         text-decoration:none;
     }
+    // markdown 글자크기 고정
     .contents > h1,h2,h3,h4,h5,h6,p {
         font-size:1rem;
         font-weight:500;

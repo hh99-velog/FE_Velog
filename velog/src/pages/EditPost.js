@@ -1,31 +1,48 @@
 import React,{useState,useRef,useEffect} from "react";
 import styled from "styled-components";
-import MarkdownRender from "../components/Makrdown";
 import { useSelector,useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
+
+//컴포넌트
+import {Grid,Button} from "../elements/ElementIndex";
+import MarkdownRender from "../components/Makrdown";
+
+// JS
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
+
 import { actionCreators as detailActions} from '../redux/modules/Detail'
 import Swal from 'sweetalert2'
 //컴포넌트
 import {Grid,Button,Image} from "../elements/ElementIndex";
 
+
 const EditPost = (props) => {
     const dispatch = useDispatch()
+    
+    // 상세페이지에서 board_id 추출
     const pathName = props.location.pathname
     const boardId = pathName.split('/')  
-  
+    
+    // 디테일 페이지에서 해당 정보 가져오기
     const list = useSelector((state) => state.detail.list)
     const data = list ? {...list} :null
-
-    const titles = data.title
-    const contetns = data.content
-    const imgs = data.img
     
-    useEffect(() => {
-        dispatch(detailActions.getDetailDB(boardId[2]))
-        setInput({ title: titles, content: contetns })
-    },[titles,contetns,imgs])
+    // 디테일 페이지에서 각 정보 가져오기
+    const titles = data.title
+    const contents = data.content
+    const imgs = data.img
 
+    const getDetail = () => {
+        dispatch(detailActions.getDetailDB(boardId[2]))
+    }
+
+    // 해당 board_id에 get요청후 data title,content에 set titles,contents,imgs 변할때마다 반환
+    useEffect(() => {
+        getDetail()
+        setInput({ title: titles, content: contents })
+    },[titles, contents, imgs])
+    
     // 이미지 파일 url따기
     const filesInput = useRef()
     
@@ -37,10 +54,13 @@ const EditPost = (props) => {
         reader.onloadend = () =>{
             dispatch(imageActions.setPreview(reader.result))
         }
+        // edit post용 파일 저장
         if(file) {
             setImageFile(file)
         }
     }
+
+    // 프리뷰 img값 가져오기
     const preview = useSelector(state => state.preview.preview)
 
     // 전송용 데이터 관리
@@ -91,6 +111,7 @@ const EditPost = (props) => {
             "data",
             new Blob([JSON.stringify(data)], { type: "application/json" })
         );
+        // Edit Post Api 요청
         dispatch(detailActions.editDetailDB(boardId[2],addFormData))
     }
 
@@ -113,6 +134,7 @@ const EditPost = (props) => {
             </div>
             <div className="preview">
                 <h2>{title}</h2>
+                {/* 이전 프리뷰 이미지를 보여주고, 새로운 프리뷰 이미지 보여줌 */}
                 {preview?<img alt="예시이미지" src={preview?preview:null}></img>:null}
                 {preview?null:<img alt='수정전이미지' src={imgs}></img>}
                 <MarkdownRender>{content}</MarkdownRender>
@@ -121,9 +143,13 @@ const EditPost = (props) => {
     )
 }
 
+// AddPostStyle component
 const AddPostStyle = styled.div`
     display:flex;
     position: relative;
+    img {
+        width: 100%;
+    }
     .title {
         box-sizing:border-box;
         width: 100%;

@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import {Grid,Text,Button,Input} from "../elements/ElementIndex";
 
 //JS
-import { apis } from '../shared/axios'
 import { actionCreators as userActions} from '../redux/modules/user'
 import { actionCreators as modalActions} from '../redux/modules/modal'
 
@@ -33,6 +32,7 @@ const SignInModal = (props) => {
         dispatch(modalActions.ExitModal())
     }
 
+    // 취소버튼
     const exit = () => {
         dispatch(modalActions.ExitModal())
     }

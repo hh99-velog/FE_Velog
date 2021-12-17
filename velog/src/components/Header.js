@@ -20,8 +20,7 @@ const Header = (props) => {
     const dispatch = useDispatch()
 
     // login 분기에 따라 header 설정
-    const is_login = window.sessionStorage.getItem("id");
-    const id = sessionStorage.getItem("id")
+    const id = window.sessionStorage.getItem("nickname")
 
     // modal state
     const inModal = useSelector((state) => state.modal.inModal)
@@ -42,7 +41,7 @@ const Header = (props) => {
         }
     }
 
-    // addPost
+    // AddPost Page 이동
     const addPost = () => {
         setNav(false)
         history.push('/addpost')
@@ -63,13 +62,35 @@ const Header = (props) => {
         <HeaderStyle>
             <h1 onClick={home}>Velgo</h1>
             <Grid position='relative' is_flex width='auto'>
-                {!is_login
-                    ?<Button _onClick={signInModal} margin='0 0 0 10px' hoverBg='#555' hoverColor='#fff' borderRadius='30px' border='1px solid #555' padding='5px 16px' bg='#fff' color='#555' size='0.8rem' bold>로그인</Button>
+                {!id
+                    ?<Button 
+                        _onClick={signInModal} 
+                        margin='0 0 0 10px' 
+                        hoverBg='#555' 
+                        hoverColor='#fff' 
+                        borderRadius='30px'
+                        border='1px solid #555'
+                        padding='5px 16px' 
+                        bg='#fff' 
+                        color='#555' 
+                        size='0.8rem' 
+                        bold
+                    >로그인</Button>
                     :null
                 }
-                {is_login
+                {id
                     ?<Grid is_flex margin='0 0 0 10px'>
-                        <Button _onClick={addPost} width='auto' hoverBg='#555' hoverColor='#fff' borderRadius='30px' padding='5px 16px' color='#555' size='0.8rem' bold>새 글 작성</Button>
+                        <Button 
+                            _onClick={addPost} 
+                            width='auto' 
+                            hoverBg='#555' 
+                            hoverColor='#fff' 
+                            borderRadius='30px' 
+                            padding='5px 16px' 
+                            color='#555' 
+                            size='0.8rem' 
+                            bold
+                        >새 글 작성</Button>
                         <Grid _onClick={navBtn} cursor='pointer' width='auto' margin='0 0 0 10px' is_flex>
                             <Text size='14px' bold>{id}님</Text>
                             <AiFillCaretDown color='#777' size='12px'></AiFillCaretDown>
@@ -77,7 +98,7 @@ const Header = (props) => {
                     </Grid>
                     :null
                 }
-                {/* nav */}
+                {/* Nav Bar */}
                 <Nav nav={nav}/>
             </Grid>
             {/* 로그인,회원가입 모달관리 */}
@@ -107,10 +128,5 @@ const HeaderStyle = styled.header`
         padding :0 20px
     }
 
-`
-const Profile = styled.img`
-    width: 2.5rem;
-        height: 2.5rem;
-        border-radius:50%;
 `
 export default withRouter(Header)

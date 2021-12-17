@@ -9,7 +9,6 @@ import { history } from '../redux/configureStore';
 
 // 컴포넌트
 import Header from "../components/Header";
-
 import Main from "../pages/Main"
 import Detail from "../pages/Detail"
 import ManiBar from "../components/ManiBar";
@@ -35,6 +34,7 @@ function App() {
   );
 }
 
+// Wrap component
 const Wrap = styled.div`
   width: 100%;
   height: 100%;

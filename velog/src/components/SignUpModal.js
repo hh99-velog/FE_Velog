@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
 //컴포넌트
@@ -37,7 +37,6 @@ const SignInModal = (props) => {
         apis
         .idDuplicate(user_id)
         .then((res) => {
-            console.log(res.data)
             if(!res.data) {
                 setIdDup(true)
                 Swal.fire({
@@ -86,7 +85,7 @@ const SignInModal = (props) => {
         })
     }
 
-    // 회원가입
+    // 회원가입 API
     const signUp = async () => {
         if(id==='' || pwd ==='' || pwdCheck==='' || userName==='') {
             Swal.fire({
@@ -128,16 +127,21 @@ const SignInModal = (props) => {
               })
             return
         }
+        
+        // 회원가입 API 요청
         dispatch(userActions.signupDB(id,userName,pwd,pwdCheck,))
+
         await Swal.fire({
             icon: 'success',
             text: '회원가입이 되었습니다',
             color: '#777',
             confirmButtonColor: '#12b886'
           })
+
         dispatch(modalActions.setInModal())
     }
 
+    // 취소
     const exit = () => {
         dispatch(modalActions.ExitModal())
     }
