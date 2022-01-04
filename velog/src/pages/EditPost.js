@@ -10,8 +10,8 @@ import MarkdownRender from "../components/Makrdown";
 // JS
 import { history } from "../redux/configureStore";
 import { actionCreators as imageActions } from "../redux/modules/preview"
-
 import { actionCreators as detailActions} from '../redux/modules/Detail'
+
 import Swal from 'sweetalert2'
 //컴포넌트
 import {Grid,Button,Image} from "../elements/ElementIndex";
@@ -99,7 +99,7 @@ const EditPost = (props) => {
             return
         }
         // 새로운 폼데이터 생성
-        let addFormData = new FormData();
+        let addFormData = new FormData();   
         // 이미지와 함께 보낼 콘텐츠와 타이틀
         const data = {
             title: title,

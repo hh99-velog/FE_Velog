@@ -31,7 +31,7 @@ const AddComments = (props) => {
     return(
        <AddCommentsStyle>
             <Text margin='0 0 10px 0' color='#555' bold>{props.cmtCount}개의 댓글</Text>
-            <textarea 
+            <textarea   
                 ref={textRef}
                 value={comment}
                 onChange={(e)=>{setComment(e.target.value)}} 
